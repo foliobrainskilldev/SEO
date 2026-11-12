@@ -16,14 +16,19 @@
   <meta property="og:locale" content="pt_MZ">
   <meta property="og:image" content="https://mocaplay.site/img/og-mocaplay.webp">
 
-  <!-- Favicon Oficial para Google Search Mobile & Navegadores -->
+  <!-- Favicon Oficial -->
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/img/favicon-192x192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/img/favicon-192x192.png">
 
   <link rel="stylesheet" href="/style.css">
+  <style>
+    /* Garante 100% de responsividade em qualquer conteúdo inserido pelo CMS */
+    .cms-body-wrap { width: 100%; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
+    .cms-body-wrap .btn, .hero-main-card .btn { white-space: normal; max-width: 100%; line-height: 1.35; }
+  </style>
 
-  <!-- Dados Estruturados JSON-LD Automáticos: Organization + BreadcrumbList + FAQPage -->
+  <!-- Dados Estruturados JSON-LD Automáticos -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -94,7 +99,7 @@
     </div>
   </div>
 
-  <!-- 2. HEADER PRINCIPAL COM LOGO INTELIGENTE E BANNER DE TOPO -->
+  <!-- 2. HEADER PRINCIPAL -->
   <header class="site-header">
     <div class="container header-grid">
       <div>
@@ -188,7 +193,7 @@
         <p>{{ subtitle }}</p>
         <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
           <a href="{{ cta_url | default('https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690') }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta">
-            {{ cta_text | default('Criar Conta na Placard (Desde 1 MT)') }} &rarr;
+            {{ cta_text | default('Visitar Placard.co.mz') }} &rarr;
           </a>
           <a href="/melhores-casas-de-apostas-mocambique.html" class="btn btn-primary">Ver Ranking IGJ</a>
         </div>
@@ -240,11 +245,11 @@
     </section>
 
     <!-- CORPO DO ARTIGO ESCRITO NO PAINEL CMS -->
-    <article class="content-prose">
+    <article class="content-prose cms-body-wrap">
       {{ content | safe }}
     </article>
 
-    <!-- BLOCO DE FAQ AUTOMÁTICO (Se tiver adicionado perguntas no painel CMS) -->
+    <!-- BLOCO DE FAQ AUTOMÁTICO -->
     {% if faqs and faqs.length > 0 %}
     <section aria-labelledby="titulo-faq-artigo">
       <div class="section-header">
