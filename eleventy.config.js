@@ -1,25 +1,20 @@
 /**
- * MOCAPLAY.SITE - Motor Oficial Eleventy (Corrigido para ignorar a pasta Admin)
+ * MOCAPLAY.SITE - Motor Oficial Eleventy
  */
 
 module.exports = function (eleventyConfig) {
-  // 1. Copia as páginas HTML fixas e os ficheiros estáticos para "_site"
+  // 1. Copia as pastas HTML fixas e os ficheiros estáticos diretamente sem os ler
   eleventyConfig.addPassthroughCopy("*.html");
   eleventyConfig.addPassthroughCopy("casas/*.html");
   eleventyConfig.addPassthroughCopy("pagamentos/*.html");
   eleventyConfig.addPassthroughCopy("guias/*.html");
   eleventyConfig.addPassthroughCopy("apostas-futebol/*.html");
-  eleventyConfig.addPassthroughCopy("blog/*.html");
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("script.js");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("admin");
-
-  // Diz ao robô para NÃO tentar ler códigos dentro da pasta admin e do Readme
-  eleventyConfig.ignores.add("README.md");
-  eleventyConfig.ignores.add("admin/**"); 
 
   // 2. COLEÇÃO AUTOMÁTICA DO CMS: Agrupa todos os artigos
   eleventyConfig.addCollection("paginas_cms", function (collectionApi) {
@@ -31,7 +26,7 @@ module.exports = function (eleventyConfig) {
       .reverse();
   });
 
-  // 3. Regra para DESATIVAR páginas no CMS (se marcar "draft: true", a página sai do ar)
+  // 3. Regra para DESATIVAR páginas no CMS
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       if (data.draft === true) return false;
