@@ -1,9 +1,9 @@
 /**
- * MOCAPLAY.SITE - Motor Oficial Eleventy
+ * MOCAPLAY.SITE - Motor Oficial Eleventy (Corrigido para ignorar a pasta Admin)
  */
 
 module.exports = function (eleventyConfig) {
-  // 1. Copia as páginas HTML fixas e os ficheiros estáticos para "_site" sem as processar
+  // 1. Copia as páginas HTML fixas e os ficheiros estáticos para "_site"
   eleventyConfig.addPassthroughCopy("*.html");
   eleventyConfig.addPassthroughCopy("casas/*.html");
   eleventyConfig.addPassthroughCopy("pagamentos/*.html");
@@ -17,7 +17,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("admin");
 
+  // Diz ao robô para NÃO tentar ler códigos dentro da pasta admin e do Readme
   eleventyConfig.ignores.add("README.md");
+  eleventyConfig.ignores.add("admin/**"); 
 
   // 2. COLEÇÃO AUTOMÁTICA DO CMS: Agrupa todos os artigos
   eleventyConfig.addCollection("paginas_cms", function (collectionApi) {
@@ -68,8 +70,8 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       output: "_site"
     },
-    templateFormats: ["md", "njk"], // A magia está aqui: removemos o "html"!
+    templateFormats: ["md", "njk"],
     markdownTemplateEngine: "njk",
-    htmlTemplateEngine: false       // Impede o Eleventy de ler o Javascript do admin
+    htmlTemplateEngine: false
   };
 };
