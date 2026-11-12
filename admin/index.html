@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo CMS | MocaPlay</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Widget Oficial de Login da Netlify (Netlify Identity) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Carrega o Decap CMS (antigo Netlify CMS) -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Regista os Botões Visuais (Blocos do Site) dentro do Editor de Texto do CMS -->
+  <script>
+    // 1. Componente Visual: Botão de Ação / Afiliado
+    CMS.registerEditorComponent({
+      id: "botao-cta",
+      label: "Botão de Afiliado / CTA",
+      fields: [
+        { name: "texto", label: "Texto do Botão", widget: "string", default: "Criar Conta na Placard (Desde 1 MT)" },
+        { name: "url", label: "Link de Destino", widget: "string", default: "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" },
+        {
+          name: "estilo",
+          label: "Cor do Botão",
+          widget: "select",
+          options: [
+            { label: "Verde Destaque (btn-cta)", value: "btn-cta" },
+            { label: "Azul Principal (btn-primary)", value: "btn-primary" },
+            { label: "Contorno Limpo (btn-outline)", value: "btn-outline" }
+          ],
+          default: "btn-cta"
+        }
+      ],
+      pattern: /^{%\s*botao\s+"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\s*%}$/,
+      fromBlock: function(match) {
+        return { texto: match[1], url: match[2], estilo: match[3] };
+      },
+      toBlock: function(obj) {
+        return '{% botao "' + (obj.texto || "Ver Oferta") + '", "' + (obj.url || "#") + '", "' + (obj.estilo || "btn-cta") + '" %}';
+      },
+      toPreview: function(obj) {
+        return '<p><a href="' + obj.url + '" style="display:inline-block;padding:10px 18px;background:#10b981;color:#fff;font-weight:bold;border-radius:6px;text-decoration:none;">' + obj.texto + ' &rarr;</a></p>';
+      }
+    });
+
+    // 2. Componente Visual: Caixa de Aviso Importante Laranja (.callout-warning)
+    CMS.registerEditorComponent({
+      id: "caixa-aviso",
+      label: "Caixa de Aviso Importante (+18 / Alerta)",
+      fields: [
+        { name: "titulo", label: "Título em Negrito", widget: "string", default: "Atenção Importante (+18)" },
+        { name: "texto", label: "Texto do Aviso", widget: "text", default: "Aposte com moderação e verifique sempre os requisitos de rollover." }
+      ],
+      pattern: /^{%\s*aviso\s+"([^"]+)"\s*,\s*"([^"]+)"\s*%}$/,
+      fromBlock: function(match) {
+        return { titulo: match[1], texto: match[2] };
+      },
+      toBlock: function(obj) {
+        var cleanText = (obj.texto || "").replace(/"/g, "'").replace(/\n/g, " ");
+        return '{% aviso "' + (obj.titulo || "Aviso") + '", "' + cleanText + '" %}';
+      },
+      toPreview: function(obj) {
+        return '<div style="background:#fff7ed;border-left:4px solid #f97316;padding:14px;border-radius:6px;margin:12px 0;"><strong>' + obj.titulo + ':</strong> ' + obj.texto + '</div>';
+      }
+    });
+
+    // 3. Componente Visual: Bloco de Prós e Contras (Verde e Vermelho)
+    CMS.registerEditorComponent({
+      id: "pros-contras",
+      label: "Bloco de Prós e Contras",
+      fields: [
+        { name: "pros", label: "Pontos Fortes (Separe cada ponto com uma barra | )", widget: "text", default: "Depósito mínimo de 1 MT | Aceita M-Pesa, e-Mola e M-Kesh | Boost até 1000%" },
+        { name: "contras", label: "Pontos a Melhorar (Separe cada ponto com uma barra | )", widget: "text", default: "Odds mínimas de 3.00 nos bónus de recarga | Não tem app nativa" }
+      ],
+      pattern: /^{%\s*proscontras\s+"([^"]+)"\s*,\s*"([^"]+)"\s*%}$/,
+      fromBlock: function(match) {
+        return { pros: match[1], contras: match[2] };
+      },
+      toBlock: function(obj) {
+        var cleanPros = (obj.pros || "").replace(/"/g, "'").replace(/\n/g, " ");
+        var cleanContras = (obj.contras || "").replace(/"/g, "'").replace(/\n/g, " ");
+        return '{% proscontras "' + cleanPros + '", "' + cleanContras + '" %}';
+      },
+      toPreview: function(obj) {
+        return '<div style="display:grid;gap:10px;margin:12px 0;"><div style="background:#ecfdf5;border-left:4px solid #10b981;padding:12px;"><strong>Prós:</strong> ' + obj.pros + '</div><div style="background:#fef2f2;border-left:4px solid #ef4444;padding:12px;"><strong>Contras:</strong> ' + obj.contras + '</div></div>';
+      }
+    });
+
+    // 4. Componente Visual: Cartão Editorial de Destaque (.editorial-card)
+    CMS.registerEditorComponent({
+      id: "cartao-editorial",
+      label: "Cartão de Destaque (Card)",
+      fields: [
+        { name: "etiqueta", label: "Texto da Etiqueta (Badge)", widget: "string", default: "Destaque MocaPlay" },
+        {
+          name: "cor",
+          label: "Cor da Etiqueta",
+          widget: "select",
+          options: [
+            { label: "Verde (green)", value: "green" },
+            { label: "Vermelho (red)", value: "red" },
+            { label: "Azul Padrão", value: "" }
+          ],
+          default: "green"
+        },
+        { name: "titulo", label: "Título do Cartão", widget: "string", default: "Como Depositar com M-Pesa desde 1 MT" },
+        { name: "texto", label: "Resumo do Cartão", widget: "text", default: "Aprenda o passo a passo rápido para carregar a sua conta." },
+        { name: "textoBotao", label: "Texto do Botão", widget: "string", default: "Ler Guia Completo" },
+        { name: "urlBotao", label: "Link do Botão", widget: "string", default: "/pagamentos/m-pesa.html" }
+      ],
+      pattern: /^{%\s*cartao\s+"([^"]*)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*%}$/,
+      fromBlock: function(match) {
+        return { etiqueta: match[1], cor: match[2], titulo: match[3], texto: match[4], textoBotao: match[5], urlBotao: match[6] };
+      },
+      toBlock: function(obj) {
+        var cleanTexto = (obj.texto || "").replace(/"/g, "'").replace(/\n/g, " ");
+        return '{% cartao "' + (obj.etiqueta || "Guia") + '", "' + (obj.cor || "") + '", "' + (obj.titulo || "") + '", "' + cleanTexto + '", "' + (obj.textoBotao || "Ler Mais") + '", "' + (obj.urlBotao || "#") + '" %}';
+      },
+      toPreview: function(obj) {
+        return '<div style="border:1px solid #e2e8f0;padding:15px;border-radius:10px;background:#fff;margin:12px 0;"><strong>[' + obj.etiqueta + '] ' + obj.titulo + '</strong><p>' + obj.texto + '</p></div>';
+      }
+    });
+  </script>
+</body>
+</html>

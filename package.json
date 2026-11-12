@@ -1,0 +1,12 @@
+{
+  "name": "mocaplay-cms",
+  "version": "1.0.0",
+  "description": "Sistema Estático e CMS Visual do portal MocaPlay (mocaplay.site)",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
