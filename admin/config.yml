@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
-  branch: main # Se o seu repositório no GitHub usar "master", troque para master
+  branch: main
+  identity_url: "https://mocaplay.netlify.app/.netlify/identity"
+  gateway_url: "https://mocaplay.netlify.app/.netlify/git"
 
 # Pasta onde ficam guardadas as imagens enviadas pelo painel CMS
 media_folder: "img/uploads"
@@ -9,98 +11,56 @@ public_folder: "/img/uploads"
 locale: "pt"
 
 collections:
-  # 1. SECÇÃO DE ARTIGOS DO BLOG
-  - name: "blog"
-    label: "Artigos do Blog"
-    label_singular: "Artigo do Blog"
+  # CRIADOR UNIVERSAL DE PÁGINAS E ARTIGOS (Para todo o site)
+  - name: "paginas_cms"
+    label: "Todas as Páginas & Artigos"
+    label_singular: "Página / Artigo"
     folder: "blog/artigos"
     create: true
     delete: true
     slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
+    summary: "{{title}} — ({{permalink}})"
     fields:
+      # Regras Invisíveis do Sistema (Sitemap e Molde)
       - { label: "Molde do Site", name: "layout", widget: "hidden", default: "layout.njk" }
+      - { label: "Incluir no Sitemap", name: "eleventyExcludeFromCollections", widget: "hidden", default: false }
+      
+      # Modos de Publicação e Endereço
       - { label: "Desativar Página (Modo Rascunho / Fora do Ar)", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "URL Final da Página (Ex: /blog/aviator-888bets-apk.html)", name: "permalink", widget: "string", default: "/blog/nome-do-artigo.html" }
+      - label: "Onde a página vai ficar? (URL Final com .html no fim)"
+        name: "permalink"
+        widget: "string"
+        default: "/blog/nome-da-pagina.html"
+        hint: "Exemplos: /blog/novo-artigo.html | /casas/nova-casa.html | /guias/dica.html"
+      
+      # Configurações de SEO e Cabeçalho
       - { label: "Título SEO (<title> até 60 caracteres)", name: "title", widget: "string" }
       - { label: "Descrição Google (Meta Description até 155 caracteres)", name: "description", widget: "text" }
-      - { label: "Nome Curto no Breadcrumb", name: "breadcrumb", widget: "string" }
-      - { label: "Etiqueta do Topo (Badge)", name: "badge_text", widget: "string", default: "Guia Oficial Moçambique" }
+      - { label: "Nome Curto no Breadcrumb (Ex: Placard Login)", name: "breadcrumb", widget: "string" }
+      
+      # Design do Topo da Página
+      - { label: "Texto da Barra Preta do Topo (Opcional)", name: "topbar_text", widget: "string", default: "Comparação de Licenças IGJ, Depósitos 1 MT e Guias em Moçambique", required: false }
+      - { label: "Etiqueta Colorida do Topo (Badge)", name: "badge_text", widget: "string", default: "Guia Oficial Moçambique" }
       - label: "Cor da Etiqueta"
         name: "badge_color"
         widget: "select"
         options:
-          - { label: "Vermelho", value: "red" }
-          - { label: "Verde", value: "green" }
-          - { label: "Azul", value: "" }
+          - { label: "Vermelho (Destaque)", value: "red" }
+          - { label: "Verde (Sucesso / Oficial)", value: "green" }
+          - { label: "Azul (Padrão)", value: "" }
         default: "red"
       - { label: "Título Principal da Página (H1)", name: "h1", widget: "string" }
       - { label: "Resumo no Topo (Abaixo do H1)", name: "subtitle", widget: "text" }
-      - { label: "Texto do Botão Principal do Topo", name: "cta_text", widget: "string", default: "Criar Conta na Placard (Desde 1 MT)" }
+      
+      # Botão Verde Principal do Topo
+      - { label: "Texto do Botão Principal do Topo", name: "cta_text", widget: "string", default: "Apostar na Placard.co.mz (1 MT)" }
       - { label: "Link do Botão Principal do Topo", name: "cta_url", widget: "string", default: "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" }
-      - { label: "Conteúdo Completo do Artigo (Use o botão '+' para inserir Botões, Avisos, Tabelas e Prós/Contras)", name: "body", widget: "markdown" }
-      - label: "Perguntas Frequentes (FAQ Acordeão + JSON-LD Automático)"
-        name: "faqs"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Pergunta", name: "pergunta", widget: "string" }
-          - { label: "Resposta", name: "resposta", widget: "text" }
-
-  # 2. SECÇÃO DE GUIAS EDUCATIVOS
-  - name: "guias"
-    label: "Guias de Apostas"
-    label_singular: "Guia"
-    folder: "guias/cms"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    fields:
-      - { label: "Molde do Site", name: "layout", widget: "hidden", default: "layout.njk" }
-      - { label: "Desativar Página (Modo Rascunho)", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "URL Final da Página (Ex: /guias/novo-guia.html)", name: "permalink", widget: "string", default: "/guias/novo-guia.html" }
-      - { label: "Título SEO (<title>)", name: "title", widget: "string" }
-      - { label: "Descrição Google (Meta Description)", name: "description", widget: "text" }
-      - { label: "Nome Curto no Breadcrumb", name: "breadcrumb", widget: "string" }
-      - { label: "Etiqueta do Topo (Badge)", name: "badge_text", widget: "string", default: "Escola de Apostas MZ" }
-      - { label: "Cor da Etiqueta", name: "badge_color", widget: "select", options: ["red", "green", ""], default: "green" }
-      - { label: "Título Principal (H1)", name: "h1", widget: "string" }
-      - { label: "Resumo no Topo (Abaixo do H1)", name: "subtitle", widget: "text" }
-      - { label: "Conteúdo do Guia", name: "body", widget: "markdown" }
-      - label: "Perguntas Frequentes (FAQ)"
-        name: "faqs"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Pergunta", name: "pergunta", widget: "string" }
-          - { label: "Resposta", name: "resposta", widget: "text" }
-
-  # 3. SECÇÃO DE FUTEBOL & PREVISÕES
-  - name: "futebol"
-    label: "Artigos de Futebol & Moçambola"
-    label_singular: "Artigo de Futebol"
-    folder: "apostas-futebol/cms"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    fields:
-      - { label: "Molde do Site", name: "layout", widget: "hidden", default: "layout.njk" }
-      - { label: "Desativar Página (Modo Rascunho)", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "URL Final da Página (Ex: /apostas-futebol/jornada-mocambola.html)", name: "permalink", widget: "string", default: "/apostas-futebol/novo-artigo.html" }
-      - { label: "Título SEO (<title>)", name: "title", widget: "string" }
-      - { label: "Descrição Google (Meta Description)", name: "description", widget: "text" }
-      - { label: "Nome Curto no Breadcrumb", name: "breadcrumb", widget: "string" }
-      - { label: "Etiqueta do Topo (Badge)", name: "badge_text", widget: "string", default: "Futebol & Previsões" }
-      - { label: "Cor da Etiqueta", name: "badge_color", widget: "select", options: ["red", "green", ""], default: "green" }
-      - { label: "Título Principal (H1)", name: "h1", widget: "string" }
-      - { label: "Resumo no Topo (Abaixo do H1)", name: "subtitle", widget: "text" }
-      - { label: "Conteúdo do Artigo", name: "body", widget: "markdown" }
-      - label: "Perguntas Frequentes (FAQ)"
+      
+      # Corpo do Texto e FAQ
+      - { label: "Conteúdo da Página (Use o '+' para inserir Botões, Avisos, Prós/Contras e Cartões)", name: "body", widget: "markdown" }
+      - label: "Perguntas Frequentes (FAQ Acordeão + Google SEO)"
         name: "faqs"
         widget: "list"
         required: false
