@@ -1,339 +1,66 @@
-<!DOCTYPE html>
-<html lang="pt-MZ">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}">
-  <link rel="canonical" href="https://mocaplay.site{{ page.url }}">
+/**
+ * MOCAPLAY.SITE - Motor Oficial Eleventy (100% Responsivo e Sem Bug de Markdown)
+ */
 
-  <!-- Open Graph / Redes Sociais -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ description }}">
-  <meta property="og:url" content="https://mocaplay.site{{ page.url }}">
-  <meta property="og:site_name" content="MocaPlay">
-  <meta property="og:locale" content="pt_MZ">
-  <meta property="og:image" content="https://mocaplay.site/img/og-mocaplay.webp">
+module.exports = function (eleventyConfig) {
+  // 1. Copia automaticamente todas as 26 páginas HTML atuais e ficheiros estáticos
+  eleventyConfig.addPassthroughCopy("*.html");
+  eleventyConfig.addPassthroughCopy("casas/*.html");
+  eleventyConfig.addPassthroughCopy("pagamentos/*.html");
+  eleventyConfig.addPassthroughCopy("guias/*.html");
+  eleventyConfig.addPassthroughCopy("apostas-futebol/*.html");
+  eleventyConfig.addPassthroughCopy("blog/*.html");
+  eleventyConfig.addPassthroughCopy("style.css");
+  eleventyConfig.addPassthroughCopy("script.js");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy("sitemap.xml");
+  eleventyConfig.addPassthroughCopy("img");
+  eleventyConfig.addPassthroughCopy("admin");
 
-  <!-- Favicon Oficial -->
-  <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="icon" type="image/png" href="/img/favicon-192x192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="/img/favicon-192x192.png">
+  eleventyConfig.ignores.add("README.md");
 
-  <link rel="stylesheet" href="/style.css">
-  <style>
-    /* Garante 100% de responsividade em qualquer conteúdo inserido pelo CMS */
-    .cms-body-wrap { width: 100%; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
-    .cms-body-wrap .btn, .hero-main-card .btn { white-space: normal; max-width: 100%; line-height: 1.35; }
-  </style>
+  // 2. Regra para DESATIVAR páginas no CMS (se marcar "draft: true", a página sai do ar)
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    permalink: (data) => {
+      if (data.draft === true) return false;
+      return data.permalink;
+    }
+  });
 
-  <!-- Dados Estruturados JSON-LD Automáticos -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://mocaplay.site/#organization",
-        "name": "MocaPlay",
-        "url": "https://mocaplay.site/",
-        "logo": "https://mocaplay.site/img/logo-mocaplay.webp"
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://mocaplay.site{{ page.url }}#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Início",
-            "item": "https://mocaplay.site/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "{{ breadcrumb | default(h1) }}",
-            "item": "https://mocaplay.site{{ page.url }}"
-          }
-        ]
-      }
-      {% if faqs and faqs.length > 0 %},
-      {
-        "@type": "FAQPage",
-        "@id": "https://mocaplay.site{{ page.url }}#faq",
-        "mainEntity": [
-          {% for item in faqs %}
-          {
-            "@type": "Question",
-            "name": "{{ item.pergunta | replace('"', '\\"') }}",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "{{ item.resposta | replace('"', '\\"') }}"
-            }
-          }{% if not loop.last %},{% endif %}
-          {% endfor %}
-        ]
-      }
-      {% endif %}
-    ]
-  }
-  </script>
-</head>
-<body>
+  // 3. BLOCOS VISUAIS DO CMS (Em linha única para NUNCA quebrar o layout mobile no Markdown)
+  eleventyConfig.addShortcode("botao", function (texto, url, estilo = "btn-cta", rel = "sponsored nofollow noopener") {
+    const safeUrl = url || "#";
+    const isExternal = safeUrl.startsWith("http");
+    const targetAttr = isExternal ? ' target="_blank"' : "";
+    const relAttr = isExternal ? ` rel="${rel}"` : "";
+    return `<div style="margin:1.25rem 0;"><a href="${safeUrl}"${targetAttr}${relAttr} class="btn ${estilo}" style="white-space:normal;max-width:100%;line-height:1.35;">${texto} &rarr;</a></div>`;
+  });
 
-  <!-- 1. TOPBAR -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <div class="topbar-left">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span id="current-date">Qui, 12 Nov 2026</span>
-        <span class="topbar-trending">
-          <strong>Em Destaque:</strong> {{ topbar_text | default("Comparação de Licenças IGJ, Depósitos 1 MT via M-Pesa/e-Mola e Guia do Aviator") }}
-        </span>
-      </div>
-      <div class="topbar-right">
-        <span class="badge-18">+18</span>
-        <span>Jogue com moderação</span>
-      </div>
-    </div>
-  </div>
+  eleventyConfig.addShortcode("aviso", function (titulo, texto) {
+    return `<div class="callout-warning"><strong>${titulo}:</strong> ${texto}</div>`;
+  });
 
-  <!-- 2. HEADER PRINCIPAL -->
-  <header class="site-header">
-    <div class="container header-grid">
-      <div>
-        <a href="/" class="brand-logo">
-          <img src="/img/logo-mocaplay.webp" alt="Logo MocaPlay" class="brand-logo-img" width="42" height="42" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-          <span class="brand-logo-mark" style="display:none;">M</span>
-          <span>
-            MocaPlay
-            <small class="brand-tagline">Comparador Independente de Apostas em Moçambique</small>
-          </span>
-        </a>
-      </div>
+  eleventyConfig.addShortcode("proscontras", function (prosTexto, contrasTexto) {
+    const prosItens = (prosTexto || "").split("|").map(i => i.trim()).filter(Boolean).map(i => `<li>${i}</li>`).join("");
+    const contrasItens = (contrasTexto || "").split("|").map(i => i.trim()).filter(Boolean).map(i => `<li>${i}</li>`).join("");
+    return `<div class="pros-cons-grid"><div class="pros-box"><h4>&#10003; Pontos Fortes (Prós)</h4><ul>${prosItens}</ul></div><div class="cons-box"><h4>&#10007; Pontos a Melhorar (Contras)</h4><ul>${contrasItens}</ul></div></div>`;
+  });
 
-      <div class="header-banner">
-        <div class="header-banner-text">
-          <strong>Destaque #1 MZ:</strong> Placard.co.mz com depósitos desde 1 MT (M-Pesa, e-Mola e M-Kesh) e Boost até 1000%.
-        </div>
-        <a href="https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta btn-sm">
-          Visitar Placard &rarr;
-        </a>
-      </div>
-    </div>
-  </header>
+  eleventyConfig.addShortcode("cartao", function (etiqueta, corEtiqueta, titulo, texto, textoBotao, urlBotao) {
+    const badgeClass = corEtiqueta ? `category-badge ${corEtiqueta}` : "category-badge";
+    const btnHtml = urlBotao ? `<a href="${urlBotao}" class="btn btn-outline btn-sm" style="white-space:normal;">${textoBotao || "Ler Mais"} &rarr;</a>` : "";
+    return `<article class="editorial-card" style="margin:1.25rem 0;"><div><span class="${badgeClass}">${etiqueta}</span><h3>${titulo}</h3><p>${texto}</p></div>${btnHtml}</article>`;
+  });
 
-  <!-- 3. MENU DE NAVEGAÇÃO -->
-  <nav class="navbar" aria-label="Navegação Principal">
-    <div class="container navbar-inner">
-      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">
-        &#9776; Menu
-      </button>
-
-      <ul class="nav-links" id="nav-links">
-        <li><a href="/">Início</a></li>
-        <li><a href="/melhores-casas-de-apostas-mocambique.html">Melhores Casas</a></li>
-        <li><a href="/codigos-promocionais-e-bonus.html">Bónus &amp; Códigos</a></li>
-        <li><a href="/pagamentos/m-pesa.html">M-Pesa &amp; Pagamentos</a></li>
-        <li><a href="/apps-de-apostas-mocambique.html">Apps Mobile</a></li>
-        <li><a href="/guias/como-apostar-iniciantes.html">Guias</a></li>
-        <li><a href="/apostas-futebol/index.html">Futebol &amp; Moçambola</a></li>
-      </ul>
-
-      <a href="https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" target="_blank" rel="sponsored nofollow noopener" class="nav-cta-btn">
-        &#9654; Casa #1 MZ
-      </a>
-    </div>
-  </nav>
-
-  <!-- 4. BARRA DE TAGS POPULARES -->
-  <div class="popular-tags-bar">
-    <div class="container popular-tags-inner">
-      <span class="tags-label">Tópicos Populares:</span>
-      <a href="/casas/placard.html" class="tag-pill">#PlacardBetMZ</a>
-      <a href="/casas/elephant-bet.html" class="tag-pill">#ElephantBet</a>
-      <a href="/casas/888bets.html" class="tag-pill">#888bets</a>
-      <a href="/casas/betway.html" class="tag-pill">#BetwayMZ</a>
-      <a href="/casas/olabet.html" class="tag-pill">#Olabets</a>
-      <a href="/pagamentos/m-pesa.html" class="tag-pill">#MPesa</a>
-      <a href="/pagamentos/e-mola.html" class="tag-pill">#eMola</a>
-      <a href="/pagamentos/mkesh.html" class="tag-pill">#MKesh</a>
-      <a href="/guias/aviator-e-jogos-crash.html" class="tag-pill">#Aviator</a>
-    </div>
-  </div>
-
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="container">
-
-    <!-- Breadcrumbs -->
-    <ol class="breadcrumbs" aria-label="caminho de navegação">
-      <li><a href="/">Início</a></li>
-      <li><a href="/blog/">Artigos &amp; Guias</a></li>
-      <li aria-current="page">{{ breadcrumb | default(h1) }}</li>
-    </ol>
-
-    <!-- Barra de Autor Verificado e Data Dinâmica -->
-    <div class="article-meta-bar">
-      <span class="author-badge">
-        Escrito por Mocaplay
-        <svg class="verified-icon" viewBox="0 0 24 24" aria-label="Autor Verificado" role="img">
-          <path d="M12 2L14.8 4.5L18.5 4.1L19.8 7.6L23 9.5L21.8 13L23 16.5L19.8 18.4L18.5 21.9L14.8 21.5L12 24L9.2 21.5L5.5 21.9L4.2 18.4L1 16.5L2.2 13L1 9.5L4.2 7.6L5.5 4.1L9.2 4.5L12 2ZM10.4 16.6L17.2 9.8L15.8 8.4L10.4 13.8L8.2 11.6L6.8 13L10.4 16.6Z"/>
-        </svg>
-      </span>
-      <span>Atualizado em: <span class="dynamic-date">12 de Novembro de 2026</span></span>
-      <span>Verificado: <a href="/como-avaliamos.html">Metodologia MocaPlay</a></span>
-    </div>
-
-    <!-- HERO DO ARTIGO + PAINEL LATERAL TOP CASAS -->
-    <section class="hero-editorial-grid" aria-label="Cabeçalho do Artigo">
-      <div class="hero-main-card">
-        <span class="category-badge {{ badge_color | default('red') }}">{{ badge_text | default('Guia Oficial Moçambique') }}</span>
-        <h1>{{ h1 }}</h1>
-        <p>{{ subtitle }}</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-          <a href="{{ cta_url | default('https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690') }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta">
-            {{ cta_text | default('Visitar Placard.co.mz') }} &rarr;
-          </a>
-          <a href="/melhores-casas-de-apostas-mocambique.html" class="btn btn-primary">Ver Ranking IGJ</a>
-        </div>
-      </div>
-
-      <aside class="top-panel-dark" aria-label="Top Casas Recomendadas">
-        <div class="top-panel-header">
-          <h2>Top Casas Licenciadas MZ</h2>
-          <a href="/melhores-casas-de-apostas-mocambique.html" class="section-more">Ver Todas</a>
-        </div>
-        <ul class="top-panel-list">
-          <li class="top-panel-item">
-            <div class="top-panel-info">
-              <strong>1. Placard Bet MZ (#1)</strong>
-              <span>Dep. 1 MT | M-Pesa, e-Mola, M-Kesh</span>
-            </div>
-            <a href="https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta btn-sm">Registar</a>
-          </li>
-          <li class="top-panel-item">
-            <div class="top-panel-info">
-              <strong>2. Elephant Bet MZ</strong>
-              <span>200% até 5.000 MZN + Voucher</span>
-            </div>
-            <a href="/casas/elephant-bet.html" class="btn btn-primary btn-sm">Review</a>
-          </li>
-          <li class="top-panel-item">
-            <div class="top-panel-info">
-              <strong>3. 888bets MZ</strong>
-              <span>Até 500 MT Grátis + Jackpot 18</span>
-            </div>
-            <a href="/casas/888bets.html" class="btn btn-primary btn-sm">Review</a>
-          </li>
-          <li class="top-panel-item">
-            <div class="top-panel-info">
-              <strong>4. Betway MZ</strong>
-              <span>App Oficial + 100% até 5.000 MT</span>
-            </div>
-            <a href="/casas/betway.html" class="btn btn-primary btn-sm">Review</a>
-          </li>
-          <li class="top-panel-item">
-            <div class="top-panel-info">
-              <strong>5. Olabet (Olabets)</strong>
-              <span>100% Crash/Desporto + VIP 12%</span>
-            </div>
-            <a href="/casas/olabet.html" class="btn btn-primary btn-sm">Review</a>
-          </li>
-        </ul>
-      </aside>
-    </section>
-
-    <!-- CORPO DO ARTIGO ESCRITO NO PAINEL CMS -->
-    <article class="content-prose cms-body-wrap">
-      {{ content | safe }}
-    </article>
-
-    <!-- BLOCO DE FAQ AUTOMÁTICO -->
-    {% if faqs and faqs.length > 0 %}
-    <section aria-labelledby="titulo-faq-artigo">
-      <div class="section-header">
-        <h2 class="section-title red-accent" id="titulo-faq-artigo">Perguntas Frequentes (FAQ)</h2>
-      </div>
-      <div class="faq-list">
-        {% for item in faqs %}
-        <div class="faq-item {% if loop.first %}active{% endif %}">
-          <button class="faq-question" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}">
-            <span>{{ item.pergunta }}</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>{{ item.resposta }}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
-
-  </main>
-
-  <!-- RODAPÉ INSTITUCIONAL -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Sobre o MocaPlay</h4>
-          <p style="color:#94a3b8; margin-bottom:0.85rem;">
-            O MocaPlay.site é um portal informativo e comparador independente de casas de apostas desportivas em Moçambique. Não operamos jogos de fortuna ou azar nem aceitamos apostas diretamente.
-          </p>
-          <span class="badge-18">+18 APENAS MAIORES DE IDADE</span>
-        </div>
-
-        <div class="footer-col">
-          <h4>Casas Analisadas</h4>
-          <ul class="footer-links">
-            <li><a href="/casas/placard.html">Placard Moçambique</a></li>
-            <li><a href="/casas/elephant-bet.html">Elephant Bet Moçambique</a></li>
-            <li><a href="/casas/888bets.html">888bets Moçambique</a></li>
-            <li><a href="/casas/betway.html">Betway Moçambique</a></li>
-            <li><a href="/casas/olabet.html">Olabet Moçambique</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Guias &amp; Pagamentos</h4>
-          <ul class="footer-links">
-            <li><a href="/melhores-casas-de-apostas-mocambique.html">Ranking Melhores Casas</a></li>
-            <li><a href="/codigos-promocionais-e-bonus.html">Bónus e Códigos Promocionais</a></li>
-            <li><a href="/pagamentos/m-pesa.html">Depósitos com M-Pesa</a></li>
-            <li><a href="/pagamentos/e-mola.html">Depósitos com e-Mola</a></li>
-            <li><a href="/pagamentos/mkesh.html">Depósitos com M-Kesh</a></li>
-            <li><a href="/guias/aviator-e-jogos-crash.html">Guia Aviator e Crash</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Transparência &amp; Legal</h4>
-          <ul class="footer-links">
-            <li><a href="/como-avaliamos.html">Como Avaliamos</a></li>
-            <li><a href="/sobre.html">Sobre Nós</a></li>
-            <li><a href="/equipa-e-autores.html">Equipa e Autores</a></li>
-            <li><a href="/jogo-responsavel.html">Jogo Responsável (+18)</a></li>
-            <li><a href="/aviso-de-afiliados.html">Aviso de Afiliados</a></li>
-            <li><a href="/politica-de-privacidade.html">Política de Privacidade</a></li>
-            <li><a href="/termos-de-uso.html">Termos de Uso</a></li>
-            <li><a href="/contacto.html">Contacto</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-legal-notice">
-        <strong>+18 | Jogue com responsabilidade.</strong> As apostas desportivas e jogos de casino podem causar dependência se não forem praticados com moderação. Aposte apenas o que pode perder. <strong>Este site contém links de afiliado:</strong> podemos receber uma comissão caso se registe através dos nossos links, sem qualquer custo adicional para si. Consulte a nossa página de <a href="/jogo-responsavel.html" style="color:#fff; text-decoration:underline;">Jogo Responsável</a> e a nossa <a href="/como-avaliamos.html" style="color:#fff; text-decoration:underline;">Metodologia de Avaliação</a>.
-      </div>
-
-      <div class="footer-bottom">
-        <span>&copy; 2026 MocaPlay (mocaplay.site). Todos os direitos reservados.</span>
-        <span>Desenvolvido para apostadores em Moçambique (pt-MZ).</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/script.js" defer></script>
-</body>
-</html>
+  return {
+    dir: {
+      input: ".",
+      includes: "_includes",
+      output: "_site"
+    },
+    templateFormats: ["md", "njk"],
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: false
+  };
+};
