@@ -1,8 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: foliobrainskilldev/SEO
   branch: main
-  identity_url: "https://reliable-sunburst-3741b3.netlify.app/.netlify/identity"
-  gateway_url: "https://reliable-sunburst-3741b3.netlify.app/.netlify/git"
 
 # Pasta onde ficam guardadas as imagens enviadas pelo painel CMS
 media_folder: "img/uploads"
