@@ -5,27 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel Administrativo CMS | MocaPlay</title>
   <meta name="robots" content="noindex, nofollow">
-
-  <!-- Força o navegador a carregar o config.yml atualizado na Cloudflare -->
-  <link href="/admin/config.yml?v=cf2" type="text/yaml" rel="cms-config-url">
-
-  <!-- Conecta automaticamente a janela de login ao seu servidor de identidade -->
-  <script>
-    try {
-      localStorage.setItem("netlifySiteURL", "https://reliable-sunburst-3741b3.netlify.app");
-    } catch (e) {}
-  </script>
-
-  <!-- Widget Oficial de Login (Netlify Identity) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link href="/admin/config.yml?v=gh1" type="text/yaml" rel="cms-config-url">
 </head>
 <body>
-  <!-- Carrega o Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Motor CMS moderno compatível com Decap CMS + Login direto por Token GitHub sem depender da Netlify -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
   <!-- Regista os 5 Blocos Visuais do Site dentro do Editor de Texto do CMS -->
   <script>
-    // 1. Componente Visual: Botão de Ação / Afiliado
+    // 1. Componente Visual: Botão de Afiliado / CTA
     CMS.registerEditorComponent({
       id: "botao-cta",
       label: "Botão de Afiliado / CTA",
@@ -152,7 +140,7 @@
         return '{% tabela "' + cleanHeaders + '", "' + cleanRows + '" %}';
       },
       toPreview: function(obj) {
-        return '<div style="border:1px solid #cbd5e1;padding:10px;background:#f8fafc;margin:10px 0;"><strong>Tabela:</strong> ' + obj.cabecalhos + '</div>';
+        return '<div style="border:1px solid #cbd5e1;padding:10px;background:#f8fafc;margin:12px 0;"><strong>Tabela:</strong> ' + obj.cabecalhos + '</div>';
       }
     });
   </script>
