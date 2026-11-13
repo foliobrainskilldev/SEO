@@ -1,23 +1,26 @@
 ---
 layout: layout.njk
+eleventyExcludeFromCollections: false
 draft: false
-permalink: /blog/placard-bet-mz-login-aviator-apk.html
-title: "Placard Bet MZ Login, App APK e Bónus 2026 | MocaPlay"
-description: "Procura por Placard Bet MZ login, como baixar APK para jogar Aviator e JetX ou comparar com Olabets e 888bets? Veja o guia oficial desde 1 MT."
-breadcrumb: "Placard Bet MZ Login e App"
-badge_text: "Em Alta em Moçambique"
-badge_color: "green"
-h1: "Placard Bet MZ: Como Fazer Login, Jogar Aviator no Telemóvel e Comparação com Olabets e 888bets"
-subtitle: "Milhares de apostadores em Sofala, Nampula, Tete e Maputo pesquisam diariamente por Placard Bet MZ Login, Olabets e 888bets Aviator APK. Veja como aceder à sua conta em segundos, depositar desde 1 MT via M-Pesa, e-Mola ou M-Kesh e aproveitar o Boost até 1000%."
-cta_text: "Abrir Conta Oficial na Placard.co.mz (1 MT)"
-cta_url: "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690"
+permalink: /blog/placard-bet-mz-login-aviato-apk.html
+seccao_nome: Artigos & Guias
+title: Placard Bet MZ Login, App APK e Bónus 2026 | MocaPlay
+description: Procura por Placard Bet MZ login, como baixar APK para jogar Aviator e JetX ou comparar com Olabets e 888bets? Veja o guia oficial desde 1 MT.
+breadcrumb: Placard Bet MZ Login e App
+topbar_text: Comparação de Licenças IGJ, Depósitos 1 MT e Guias em Moçambique
+badge_text: Em Alta em Moçambique
+badge_color: green
+h1: 'Placard Bet MZ: Como Fazer Login, Jogar Aviator no Telemóvel e Comparação com Olabets e 888bets'
+subtitle: Milhares de apostadores em Sofala, Nampula, Tete e Maputo pesquisam diariamente por Placard Bet MZ Login, Olabets e 888bets Aviator APK. Veja como aceder à sua conta em segundos, depositar desde 1 MT via M-Pesa, e-Mola ou M-Kesh e aproveitar o Boost até 1000%.
+cta_text: Abrir Conta Oficial na Placard.co.mz (1 MT)
+cta_url: https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690
 faqs:
-  - pergunta: "Como fazer login na Placard Bet MZ pelo telemóvel?"
-    resposta: "Basta abrir o site oficial placard.co.mz no navegador do seu telemóvel, tocar no botão Login no topo da página e inserir o seu número de telefone (+258) e a sua palavra-passe."
-  - pergunta: "Qual é o depósito e levantamento mínimo na Placard MZ?"
-    resposta: "O depósito mínimo na Placard.co.mz é de apenas 1 MT e o levantamento mínimo é de 20 MT (até 20.000 MT por operação), disponíveis através de Vodacom M-Pesa, Movitel e-Mola e Tmcel M-Kesh."
-  - pergunta: "Preciso baixar APK para jogar Aviator na Placard, Olabets ou 888bets?"
-    resposta: "Não. A Placard, a Olabet (Olabets), a 888bets e a Elephant Bet não utilizam ficheiro APK: o jogo Aviator funciona diretamente no navegador do seu smartphone sem ocupar memória."
+  - pergunta: Como fazer login na Placard Bet MZ pelo telemóvel?
+    resposta: Basta abrir o site oficial placard.co.mz no navegador do seu telemóvel, tocar no botão Login no topo da página e inserir o seu número de telefone (+258) e a sua palavra-passe.
+  - pergunta: Qual é o depósito e levantamento mínimo na Placard MZ?
+    resposta: O depósito mínimo na Placard.co.mz é de apenas 1 MT e o levantamento mínimo é de 20 MT (até 20.000 MT por operação), disponíveis através de Vodacom M-Pesa, Movitel e-Mola e Tmcel M-Kesh.
+  - pergunta: Preciso baixar APK para jogar Aviator na Placard, Olabets ou 888bets?
+    resposta: 'Não. A Placard, a Olabet (Olabets), a 888bets e a Elephant Bet não utilizam ficheiro APK: o jogo Aviator funciona diretamente no navegador do seu smartphone sem ocupar memória.'
 ---
 
 ## 1. O Que é a Placard Bet MZ (Placard.co.mz) e Como Fazer Login?
