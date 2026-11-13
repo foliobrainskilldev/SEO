@@ -1,5 +1,5 @@
 /**
- * MOCAPLAY.SITE - Motor Oficial Eleventy
+ * MOCAPLAY.SITE - Motor Oficial Eleventy (Completo com todos os 5 Blocos do CMS)
  */
 
 module.exports = function (eleventyConfig) {
@@ -34,7 +34,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  // 4. BLOCOS VISUAIS DO CMS
+  // 4. OS 5 BLOCOS VISUAIS DO CMS (Botão, Aviso, Prós/Contras, Cartão e Tabela)
   eleventyConfig.addShortcode("botao", function (texto, url, estilo = "btn-cta", rel = "sponsored nofollow noopener") {
     const safeUrl = url || "#";
     const isExternal = safeUrl.startsWith("http");
@@ -57,6 +57,28 @@ module.exports = function (eleventyConfig) {
     const badgeClass = corEtiqueta ? `category-badge ${corEtiqueta}` : "category-badge";
     const btnHtml = urlBotao ? `<a href="${urlBotao}" class="btn btn-outline btn-sm" style="white-space:normal;">${textoBotao || "Ler Mais"} &rarr;</a>` : "";
     return `<article class="editorial-card" style="margin:1.25rem 0;"><div><span class="${badgeClass}">${etiqueta}</span><h3>${titulo}</h3><p>${texto}</p></div>${btnHtml}</article>`;
+  });
+
+  eleventyConfig.addShortcode("tabela", function (cabecalhos, linhasTexto) {
+    let headerStr = cabecalhos || "";
+    let rowsStr = linhasTexto || "";
+    if (!linhasTexto && headerStr.includes("\\n")) {
+      const parts = headerStr.split("\\n");
+      headerStr = parts.shift();
+      rowsStr = parts.join("\\n");
+    }
+    const ths = headerStr.split("|").map(h => `<th>${h.trim()}</th>`).join("");
+    const trs = rowsStr
+      .replace(/\\n/g, "\n")
+      .split("\n")
+      .map(l => l.trim())
+      .filter(Boolean)
+      .map(linha => {
+        const tds = linha.split("|").map(cel => `<td>${cel.trim()}</td>`).join("");
+        return `<tr>${tds}</tr>`;
+      })
+      .join("");
+    return `<div class="table-scroll-hint"><span>&larr; Deslize a tabela para o lado no telemóvel &rarr;</span></div><div class="table-wrapper"><table class="compare-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
   });
 
   return {
