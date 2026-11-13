@@ -5,14 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel Administrativo CMS | MocaPlay</title>
   <meta name="robots" content="noindex, nofollow">
-  <!-- Widget Oficial de Login da Netlify (Netlify Identity) -->
+
+  <!-- Força o navegador a carregar o config.yml atualizado na Cloudflare -->
+  <link href="/admin/config.yml?v=cf2" type="text/yaml" rel="cms-config-url">
+
+  <!-- Conecta automaticamente a janela de login ao seu servidor de identidade -->
+  <script>
+    try {
+      localStorage.setItem("netlifySiteURL", "https://reliable-sunburst-3741b3.netlify.app");
+    } catch (e) {}
+  </script>
+
+  <!-- Widget Oficial de Login (Netlify Identity) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Carrega o Decap CMS (antigo Netlify CMS) -->
+  <!-- Carrega o Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-  <!-- Regista os Botões Visuais (Blocos do Site) dentro do Editor de Texto do CMS -->
+  <!-- Regista os 5 Blocos Visuais do Site dentro do Editor de Texto do CMS -->
   <script>
     // 1. Componente Visual: Botão de Ação / Afiliado
     CMS.registerEditorComponent({
@@ -120,6 +131,28 @@
       },
       toPreview: function(obj) {
         return '<div style="border:1px solid #e2e8f0;padding:15px;border-radius:10px;background:#fff;margin:12px 0;"><strong>[' + obj.etiqueta + '] ' + obj.titulo + '</strong><p>' + obj.texto + '</p></div>';
+      }
+    });
+
+    // 5. Componente Visual: Tabela Comparativa Rolável (.compare-table)
+    CMS.registerEditorComponent({
+      id: "tabela-comparativa",
+      label: "Tabela Comparativa Rolável",
+      fields: [
+        { name: "cabecalhos", label: "Colunas do Topo (Separe com barra | )", widget: "string", default: "Casa | Depósito Mín. | Levantamento Mín. | Bónus" },
+        { name: "linhas", label: "Linhas da Tabela (1 linha por parágrafo, separe colunas com | )", widget: "text", default: "Placard.co.mz | 1 MT | 20 MT | Boost até 1000%\nElephant Bet | 1 MZN | 20 MZN | 200% até 5.000 MZN" }
+      ],
+      pattern: /^{%\s*tabela\s+"([^"]+)"\s*,\s*"([^"]+)"\s*%}$/,
+      fromBlock: function(match) {
+        return { cabecalhos: match[1], linhas: match[2].replace(/\\n/g, "\n") };
+      },
+      toBlock: function(obj) {
+        var cleanHeaders = (obj.cabecalhos || "").replace(/"/g, "'");
+        var cleanRows = (obj.linhas || "").replace(/"/g, "'").replace(/\n/g, "\\n");
+        return '{% tabela "' + cleanHeaders + '", "' + cleanRows + '" %}';
+      },
+      toPreview: function(obj) {
+        return '<div style="border:1px solid #cbd5e1;padding:10px;background:#f8fafc;margin:10px 0;"><strong>Tabela:</strong> ' + obj.cabecalhos + '</div>';
       }
     });
   </script>
