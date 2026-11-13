@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
   branch: main
+  identity_url: "https://reliable-sunburst-3741b3.netlify.app/.netlify/identity"
+  gateway_url: "https://reliable-sunburst-3741b3.netlify.app/.netlify/git"
 
 # Pasta onde ficam guardadas as imagens enviadas pelo painel CMS
 media_folder: "img/uploads"
@@ -24,14 +26,14 @@ collections:
       # Regras Invisíveis do Sistema (Sitemap e Molde)
       - { label: "Molde do Site", name: "layout", widget: "hidden", default: "layout.njk" }
       - { label: "Incluir no Sitemap", name: "eleventyExcludeFromCollections", widget: "hidden", default: false }
-      
+
       # Modos de Publicação e Endereço
       - { label: "Desativar Página (Modo Rascunho / Fora do Ar)", name: "draft", widget: "boolean", default: false, required: false }
       - label: "Onde a página vai ficar? (URL Final com .html no fim)"
         name: "permalink"
         widget: "string"
         default: "/blog/nome-da-pagina.html"
-        hint: "Exemplos: /blog/novo-artigo.html | /casas/nova-casa.html | /guias/dica.html"
+        hint: "Exemplos: /blog/novo-artigo.html | /casas/nova-casa.html | /guias/dica.html | /apostas-futebol/jogo.html"
       - label: "Secção no Breadcrumb"
         name: "seccao_nome"
         widget: "select"
@@ -42,12 +44,12 @@ collections:
           - { label: "Futebol & Moçambola", value: "Apostas de Futebol" }
           - { label: "Pagamentos Móveis", value: "Pagamentos" }
         default: "Artigos & Guias"
-      
+
       # Configurações de SEO e Cabeçalho
       - { label: "Título SEO (<title> até 60 caracteres)", name: "title", widget: "string" }
       - { label: "Descrição Google (Meta Description até 155 caracteres)", name: "description", widget: "text" }
       - { label: "Nome Curto no Breadcrumb (Ex: Placard Login)", name: "breadcrumb", widget: "string" }
-      
+
       # Design do Topo da Página
       - { label: "Texto da Barra Preta do Topo (Opcional)", name: "topbar_text", widget: "string", default: "Comparação de Licenças IGJ, Depósitos 1 MT e Guias em Moçambique", required: false }
       - { label: "Etiqueta Colorida do Topo (Badge)", name: "badge_text", widget: "string", default: "Guia Oficial Moçambique" }
@@ -61,11 +63,11 @@ collections:
         default: "red"
       - { label: "Título Principal da Página (H1)", name: "h1", widget: "string" }
       - { label: "Resumo no Topo (Abaixo do H1)", name: "subtitle", widget: "text" }
-      
+
       # Botão Verde Principal do Topo
       - { label: "Texto do Botão Principal do Topo", name: "cta_text", widget: "string", default: "Apostar na Placard.co.mz (Desde 1 MT)" }
       - { label: "Link do Botão Principal do Topo", name: "cta_url", widget: "string", default: "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690" }
-      
+
       # Corpo do Texto e FAQ
       - { label: "Conteúdo da Página (Use o '+' para inserir Botões, Avisos, Prós/Contras e Cartões)", name: "body", widget: "markdown" }
       - label: "Perguntas Frequentes (FAQ Acordeão + Google SEO)"
