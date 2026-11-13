@@ -1,37 +1,28 @@
 ---
 layout: layout.njk
-draft: true
+eleventyExcludeFromCollections: false
+draft: false
 permalink: /blog/elephant-bet-aviator-betway-futebol-mocambique.html
+seccao_nome: Artigos & Guias
 title: Elephant Bet Aviator e Betway Futebol Moçambique 2026 | MocaPlay
-description: Procura por Elephant Bet Aviator Levantamento ou Betway Apostas de
-  Futebol em Moçambique? Veja como apostar hoje e compare com a alternativa
-  Placard.
+description: Procura por Elephant Bet Aviator Levantamento ou Betway Apostas de Futebol em Moçambique? Veja como apostar hoje e compare com a alternativa Placard.
 breadcrumb: Aviator e Futebol Hoje MZ
+topbar_text: Comparação de Licenças IGJ, Depósitos 1 MT e Guias em Moçambique
 badge_text: Tendências de Apostas MZ
 badge_color: red
-h1: "Apostas Hoje em Moçambique: Aviator na Elephant Bet, Futebol na Betway e
-  Alternativa Placard"
-subtitle: As pesquisas por "elephant bet moçambique aviator" e "betway futebol"
-  dispararam nas províncias de Tete, Zambézia, Manica e Sofala. Saiba como
-  funcionam os levantamentos do Aviator, onde apostar na Seleção Portuguesa e
-  Inglesa, e como aproveitar depósitos desde 1 MT na Placard.
+h1: 'Apostas Hoje em Moçambique: Aviator na Elephant Bet, Futebol na Betway e Alternativa Placard'
+subtitle: As pesquisas por "elephant bet moçambique aviator" e "betway futebol" dispararam nas províncias de Tete, Zambézia, Manica e Sofala. Saiba como funcionam os levantamentos do Aviator, onde apostar na Seleção Portuguesa e Inglesa, e como aproveitar depósitos desde 1 MT na Placard.
 cta_text: Criar Conta na Placard (Desde 1 MT)
 cta_url: https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690
 faqs:
   - pergunta: Como funciona o levantamento do Aviator na Elephant Bet?
-    resposta: O levantamento pode ser feito para a sua carteira M-Pesa ou através de
-      Voucher físico (recebe um código por SMS para levantar numerário numa
-      loja). Certifique-se apenas de que não tem bónus pendentes para não os
-      perder.
+    resposta: O levantamento pode ser feito para a sua carteira M-Pesa ou através de Voucher físico (recebe um código por SMS para levantar numerário numa loja). Certifique-se apenas de que não tem bónus pendentes para não os perder.
   - pergunta: A Betway Moçambique tem apostas para a Seleção Portuguesa e Inglesa?
-    resposta: Sim. A Betway, tal como a Placard.co.mz e a 888bets, oferece cobertura
-      completa para a Seleção Portuguesa, Seleção Inglesa, Mundial, Liga das
-      Nações e clubes portugueses como o FC Porto.
+    resposta: Sim. A Betway, tal como a Placard.co.mz e a 888bets, oferece cobertura completa para a Seleção Portuguesa, Seleção Inglesa, Mundial, Liga das Nações e clubes portugueses como o FC Porto.
   - pergunta: Qual é o depósito mínimo para jogar Aviator e Futebol na Placard?
-    resposta: Na Placard.co.mz, o depósito mínimo é de apenas 1 MT (1,00 MZN)
-      através do Vodacom M-Pesa, Movitel e-Mola ou Tmcel M-Kesh (*500#),
-      permitindo-lhe colocar bilhetes de desporto a partir de 1 MT.
+    resposta: Na Placard.co.mz, o depósito mínimo é de apenas 1 MT (1,00 MZN) através do Vodacom M-Pesa, Movitel e-Mola ou Tmcel M-Kesh (*500#), permitindo-lhe colocar bilhetes de desporto a partir de 1 MT.
 ---
+
 \## 1. "Aviator Elephant Bet Moçambique": Como Funciona o Levantamento?
 
 Nas últimas 24 horas, milhares de jogadores em \*\*Tete, Manica, Sofala e Niassa\*\* levaram ao topo do Google pesquisas como \*\*"elephant bet moçambique aviator casa 1"\*\* e \*\*"elephant bet aviator levantamento"\*\*. 
