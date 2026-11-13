@@ -29,28 +29,25 @@ Se já jogou \*\*Aviator\*\* (o famoso jogo do aviãozinho vermelho da Spribe), 
 
 No entanto, existem diferenças importantes nos gráficos, nas promoções disponíveis em Moçambique e nos torneios semanais que podem fazer um deles valer mais a pena para o seu estilo de banca:
 
-{% tabela "Característica | Aviator (Spribe) | JetX (SmartSoft)
-Aposta Dupla por Ronda | Sim (2 painéis independentes) | Sim (2 apostas simultâneas)
-Auto Cash Out (Saque Automático) | Sim (a partir de 1.01x) | Sim (configurável por aposta)
-Promoção de Chat / Chuva | Chuva de Apostas Grátis (Placard) | Torneios Leaderboard e Spin & Win
-Torneio em Destaque MZ | Quarta-feira 50% Reembolso (888bets) | Leaderboard 250.000 MT (Placard)
-Casas Licenciadas onde Jogar | Placard, Elephant Bet, 888bets, Betway, Olabet | Placard, Elephant Bet, 888bets, Olabet" %}
+{% tabela "Característica | Aviator (Spribe) | JetX (SmartSoft)", "Aposta Dupla por Ronda | Sim (2 painéis independentes) | Sim (2 apostas simultâneas)\nAuto Cash Out (Saque Automático) | Sim (a partir de 1.01x) | Sim (configurável por aposta)\nPromoção de Chat / Chuva | Chuva de Apostas Grátis (Placard) | Torneios Leaderboard e Spin & Win\nTorneio em Destaque MZ | Quarta-feira 50% Reembolso (888bets) | Leaderboard 250.000 MT (Placard)\nCasas Licenciadas onde Jogar | Placard, Elephant Bet, 888bets, Betway, Olabet | Placard, Elephant Bet, 888bets, Olabet" %}
 
 {% botao "Testar JetX e Aviator na Placard.co.mz (Depósito 1 MT)", "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690", "btn-cta" %}
 
-## 2. Como Funciona o Torneio de 250.000 MT no JetX da Placard.co.mz?
+\## 2. Como Funciona o Torneio de 250.000 MT no JetX da Placard.co.mz?
 
 Um dos principais motivos para o crescimento das pesquisas por \*\*"JetX Aviator"\*\* em Moçambique são os torneios de classificação (Leaderboards) que pagam prémios diretamente em dinheiro real, sem requisitos de rollover.
 
 Na \*\*Placard Moçambique (Placard.co.mz)\*\*, por exemplo, o torneio \*\*Leaderboard de JetX e PropelX\*\* distribui \*\*250.000 MT em prémios\*\* (50.000 MT por semana para os 100 melhores jogadores, pagando 8.000 MT ao 1.º classificado):
 
 \* \*\*Aposta mínima qualificativa:\*\* Apenas \*\*5 MT\*\* com dinheiro real no JetX ou PropelX.
+
 \* \*\*Como ganhar giros na roda de pontos:\*\* A aposta conta se fizer cash out num multiplicador de \*\*1.5x ou mais\*\* (ou mesmo se a aposta for perdida), desbloqueando até 10 giros diários na roda de pontos ao atingir patamares de aposta ou multiplicadores altos (como 300x+).
+
 \* \*\*Pagamento sem rollover:\*\* Os prémios semanais são creditados diretamente na conta de dinheiro real em até 3 dias úteis após o fim da semana.
 
 {% aviso "Regra de Ouro para Jogar JetX e Aviator (+18)", "Quer escolha o JetX ou o Aviator, lembre-se de que ambos utilizam um Gerador de Números Aleatórios (RNG) 100% imprevisível. Nunca acredite em grupos de sinais e utilize sempre apostas pequenas (1% a 2% da sua banca total)." %}
 
-## 3. Vantagens e Desvantagens de Alternar entre JetX e Aviator
+\## 3. Vantagens e Desvantagens de Alternar entre JetX e Aviator
 
 Muitos apostadores experientes em Maputo, Beira, Nampula e Tete utilizam os dois jogos na mesma conta para aproveitar os bónus específicos de cada um:
 
