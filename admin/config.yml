@@ -1,0 +1,181 @@
+backend:
+  name: github
+  repo: foliobrainskilldev/SEO
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+# Otimização automática de imagens para WebP no Sveltia CMS
+media_libraries:
+  default:
+    config:
+      max_file_size: 2048000
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1200
+          height: 800
+
+locale: "pt"
+
+collections:
+  # 1. CENTRO DE COMANDO: CASAS, LINKS DE AFILIADO E CONFIGURAÇÕES GLOBAIS
+  - name: "centro_comando"
+    label: "Centro de Comando (Casas, Links & Legal)"
+    files:
+      - label: "Base de Dados das Casas (Ranking & Notas)"
+        name: "casas"
+        file: "_data/casas.json"
+        fields:
+          - label: "Lista de Casas (Arraste para reordenar o Ranking)"
+            name: "lista"
+            widget: "list"
+            summary: "{{fields.nome}} — Nota {{fields.nota_final}}/5 ({{fields.status}})"
+            fields:
+              - { label: "ID (ex: placard)", name: "id", widget: "string" }
+              - { label: "Nome da Casa", name: "nome", widget: "string" }
+              - { label: "Logótipo", name: "logo", widget: "image" }
+              - { label: "URL da Review", name: "review_url", widget: "string" }
+              - { label: "Slug do Link (/ir/...)", name: "link_slug", widget: "string" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["ativo", "pausado", "encerrado"]
+                default: "ativo"
+              - { label: "Destacar na Tabela", name: "destaque_home", widget: "boolean", default: false }
+              - { label: "Operadora", name: "operadora", widget: "string" }
+              - { label: "Licença IGJ", name: "licenca", widget: "string" }
+              - { label: "Nota Final (1 a 5)", name: "nota_final", widget: "number", value_type: "float", min: 1, max: 5, step: 0.1 }
+              - { label: "Bónus Principal", name: "bonus_titulo", widget: "string" }
+              - { label: "Depósito Mínimo", name: "deposito_min", widget: "string" }
+              - { label: "Levantamento Mínimo", name: "levantamento_min", widget: "string" }
+              - { label: "Métodos de Pagamento", name: "pagamentos", widget: "string" }
+              - { label: "App Mobile", name: "app_mobile", widget: "string" }
+              - { label: "Termos Resumidos (+18)", name: "termos_resumo", widget: "text" }
+              - { label: "Prós", name: "pros", widget: "list", field: { label: "Ponto Forte", name: "item", widget: "string" } }
+              - { label: "Contras", name: "contras", widget: "list", field: { label: "Ponto Negativo", name: "item", widget: "string" } }
+
+      - label: "Gestor de Links de Afiliado & Redirects 301"
+        name: "links"
+        file: "_data/links.json"
+        fields:
+          - label: "Links de Afiliado (/ir/slug)"
+            name: "afiliados"
+            widget: "list"
+            summary: "/ir/{{fields.slug}} -> {{fields.nome}}"
+            fields:
+              - { label: "Slug Curto (ex: placard)", name: "slug", widget: "string" }
+              - { label: "Nome da Casa", name: "nome", widget: "string" }
+              - { label: "URL de Afiliado Principal", name: "url_principal", widget: "string" }
+              - { label: "URL de Emergência (Fallback)", name: "url_fallback", widget: "string" }
+              - { label: "Ativar Fallback de Emergência?", name: "usar_fallback", widget: "boolean", default: false }
+          - label: "Redirecionamentos SEO (301)"
+            name: "redirecionamentos_301"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "URL Antiga (ex: /antiga)", name: "origem", widget: "string" }
+              - { label: "URL Nova (ex: /nova)", name: "destino", widget: "string" }
+
+      - label: "Configurações Globais, Logo & Featured Hero"
+        name: "site"
+        file: "_data/site.json"
+        fields:
+          - { label: "Nome do Site", name: "nome", widget: "string" }
+          - { label: "Domínio (ex: https://mocaplay.site)", name: "dominio", widget: "string", default: "https://mocaplay.site" }
+          - { label: "Logo do Cabeçalho (PNG)", name: "logo_header", widget: "image" }
+          - { label: "Imagem de Capa Padrão (WebP)", name: "capa_padrao", widget: "image" }
+          - { label: "Texto da Barra Preta do Topo", name: "topbar_destaque", widget: "string" }
+          - { label: "Texto Botão Topo", name: "cta_header_texto", widget: "string" }
+          - { label: "Link Botão Topo", name: "cta_header_url", widget: "string" }
+          - { label: "Hero Home: Etiqueta", name: "featured_home_badge", widget: "string" }
+          - { label: "Hero Home: Título Principal", name: "featured_home_titulo", widget: "string" }
+          - { label: "Hero Home: Resumo", name: "featured_home_resumo", widget: "text" }
+          - { label: "Hero Home: Link de Destino", name: "featured_home_url", widget: "string" }
+          - { label: "Hero Home: Imagem de Fundo", name: "featured_home_imagem", widget: "image" }
+          - { label: "Nome do Autor Verificado", name: "autor_nome", widget: "string" }
+          - { label: "Cargo do Autor", name: "autor_cargo", widget: "string" }
+          - { label: "Aviso Legal Global (+18 Rodapé)", name: "aviso_rodape", widget: "text" }
+
+  # 2. ARTIGOS, GUIAS & FEATURED POSTS
+  - name: "paginas_cms"
+    label: "Artigos, Guias & Featured Posts"
+    label_singular: "Artigo / Página"
+    folder: "blog/artigos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — ({{permalink}})"
+    fields:
+      - { label: "Molde", name: "layout", widget: "hidden", default: "layout.njk" }
+      - { label: "Incluir no Sitemap", name: "eleventyExcludeFromCollections", widget: "hidden", default: false }
+      - { label: "Modo Rascunho (Não publicar)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Marcar como Featured Post (Destaque na Home e Relacionados)", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Posição de Destaque (1 = Primeiro)", name: "featured_order", widget: "number", default: 10, required: false }
+      - { label: "Ocultar do Google (noindex)", name: "noindex", widget: "boolean", default: false, required: false }
+      - { label: "URL Final (sem .html, ex: /blog/betway-vs-888bets/)", name: "permalink", widget: "string", default: "/blog/novo-artigo/" }
+      - label: "Categoria / Secção"
+        name: "seccao_nome"
+        widget: "select"
+        options: ["Artigos & Guias", "Comparativos", "Casas de Apostas", "Pagamentos", "Futebol & Moçambola", "Aviator & Crash"]
+        default: "Artigos & Guias"
+      - { label: "Imagem de Capa (Opcional - usa capa padrão se vazio)", name: "cover_image", widget: "image", required: false }
+      - { label: "Texto Alternativo da Capa (Alt Text SEO)", name: "cover_alt", widget: "string", required: false }
+      - { label: "Título SEO (<title>)", name: "title", widget: "string" }
+      - { label: "Descrição SEO (Meta Description)", name: "description", widget: "text" }
+      - { label: "Breadcrumb Curto", name: "breadcrumb", widget: "string" }
+      - { label: "Etiqueta Colorida (Badge)", name: "badge_text", widget: "string", default: "Guia Oficial MZ" }
+      - label: "Cor da Etiqueta"
+        name: "badge_color"
+        widget: "select"
+        options:
+          - { label: "Vermelho", value: "red" }
+          - { label: "Verde", value: "green" }
+          - { label: "Azul", value: "" }
+        default: "red"
+      - { label: "Título H1", name: "h1", widget: "string" }
+      - { label: "Subtítulo / Resumo", name: "subtitle", widget: "text" }
+      - { label: "Texto do Botão Principal", name: "cta_text", widget: "string", default: "Apostar na Placard (Desde 1 MT)" }
+      - { label: "Link do Botão Principal", name: "cta_url", widget: "string", default: "/ir/placard" }
+      - { label: "Conteúdo", name: "body", widget: "markdown" }
+      - label: "Perguntas Frequentes (FAQ + JSON-LD)"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Pergunta", name: "pergunta", widget: "string" }
+          - { label: "Resposta", name: "resposta", widget: "text" }
+
+  # 3. REVIEWS DAS CASAS DE APOSTAS (LIGADAS A _data/casas.json)
+  - name: "reviews_casas"
+    label: "Reviews das Casas (IGJ)"
+    label_singular: "Review de Casa"
+    folder: "casas"
+    create: true
+    delete: false
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} ({{casa_id}})"
+    fields:
+      - { label: "Molde Protegido", name: "layout", widget: "hidden", default: "review-casa.njk" }
+      - { label: "ID da Casa (igual ao _data/casas.json)", name: "casa_id", widget: "select", options: ["placard", "olabet", "888bets", "betway", "elephant-bet"] }
+      - { label: "URL Final (ex: /casas/placard.html)", name: "permalink", widget: "string" }
+      - { label: "Imagem de Capa (Opcional)", name: "cover_image", widget: "image", required: false }
+      - { label: "Título SEO (<title>)", name: "title", widget: "string" }
+      - { label: "Descrição SEO", name: "description", widget: "text" }
+      - { label: "Título H1", name: "h1", widget: "string" }
+      - { label: "Resumo do Topo", name: "subtitle", widget: "text" }
+      - { label: "Veredito Final", name: "veredito", widget: "text" }
+      - { label: "Análise Completa (Markdown)", name: "body", widget: "markdown" }
+      - label: "Perguntas Frequentes (FAQ)"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Pergunta", name: "pergunta", widget: "string" }
+          - { label: "Resposta", name: "resposta", widget: "text" }

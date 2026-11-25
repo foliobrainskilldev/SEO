@@ -1,0 +1,13 @@
+---
+permalink: /_redirects
+eleventyExcludeFromCollections: true
+---
+# Links de Afiliado com Cloaking (302)
+{% for item in links.afiliados %}
+/ir/{{ item.slug }}  {% if item.usar_fallback %}{{ item.url_fallback }}{% else %}{{ item.url_principal }}{% endif %}  302
+{% endfor %}
+
+# Redirecionamentos SEO (301)
+{% for red in links.redirecionamentos_301 %}
+{{ red.origem }}  {{ red.destino }}  301
+{% endfor %}

@@ -1,0 +1,139 @@
+{
+  "lista": [
+    {
+      "id": "placard",
+      "nome": "Placard.co.mz",
+      "logo": "/img/logos/placard-logo.webp",
+      "review_url": "/casas/placard",
+      "link_slug": "placard",
+      "status": "ativo",
+      "destaque_home": true,
+      "operadora": "SOJOGO",
+      "licenca": "#013/IGJ/JDS/2026",
+      "nota_final": 4.8,
+      "bonus_titulo": "Boost até 1000% + Reload 50% até 1.000 MT",
+      "deposito_min": "1 MT",
+      "levantamento_min": "20 MT (até 20.000 MT)",
+      "pagamentos": "M-Pesa, e-Mola, M-Kesh (*500#)",
+      "app_mobile": "Navegador Mobile (0 MB)",
+      "termos_resumo": "+18. Dep. mín. 1 MT. Boost a partir de 3 jogos (odd 1.30+). Aplicam-se T&C.",
+      "pros": [
+        "Depósito mínimo de 1 MT nas 3 redes móveis (M-Pesa, e-Mola e M-Kesh)",
+        "Boost Acumulador até 1000% sem rollover",
+        "Cashback VIP semanal Mola de Volta em dinheiro real"
+      ],
+      "contras": [
+        "Bónus de recarga desportivos exigem odd mínima de 3.00 por seleção",
+        "Não possui aplicação nativa (funciona via navegador)"
+      ]
+    },
+    {
+      "id": "olabet",
+      "nome": "Olabet MZ",
+      "logo": "/img/logos/olabet-logo.webp",
+      "review_url": "/casas/olabet",
+      "link_slug": "olabet",
+      "status": "ativo",
+      "destaque_home": false,
+      "operadora": "Mozambique Beneficial Games LDA (MBG)",
+      "licenca": "3/IGJ/JSD/2020",
+      "nota_final": 4.7,
+      "bonus_titulo": "100% Boas-Vindas (Desporto ou Crash) + VIP 12%",
+      "deposito_min": "1 MT",
+      "levantamento_min": "20 MT (até 150.000 MT VIP)",
+      "pagamentos": "M-Pesa, e-Mola, M-Kesh (*500#)",
+      "app_mobile": "Navegador Mobile (0 MB)",
+      "termos_resumo": "+18. Rollover 1x sobre depósitos. Aplicam-se T&C na aba Bónus.",
+      "pros": [
+        "Depósitos de 1 MT a 200.000 MT sem taxas nas 3 redes móveis",
+        "Olabet VIP Circle com cashback até 12% ilimitado",
+        "Maior catálogo de Crash Games (Aviator, JetX, Spaceman, Balloon)"
+      ],
+      "contras": [
+        "Exige apostar 1x o valor depositado antes de levantar",
+        "Prémios acima de 1.000.000 MT podem ser pagos em prestações"
+      ]
+    },
+    {
+      "id": "888bets",
+      "nome": "888bets MZ",
+      "logo": "/img/logos/888bets-logo.webp",
+      "review_url": "/casas/888bets",
+      "link_slug": "888bets",
+      "status": "ativo",
+      "destaque_home": false,
+      "operadora": "888 Bets Mozambique Limitada",
+      "licenca": "026/IGJ/JDS/2023",
+      "nota_final": 4.6,
+      "bonus_titulo": "Até 500 MT Grátis + 10 Voos + Jackpot 18",
+      "deposito_min": "1 MZN (20 MT p/ Bónus)",
+      "levantamento_min": "20 a 25.000 MZN",
+      "pagamentos": "Vodacom M-Pesa, Movitel e-Mola",
+      "app_mobile": "Navegador Mobile (0 MB)",
+      "termos_resumo": "+18. 1º dep. mín. 20 MT para bónus 500 MT (múltipla odd 3.00+). T&C aplicáveis.",
+      "pros": [
+        "Grande Jackpot 18 totalmente gratuito (0 MT) todas as semanas",
+        "Cobertura dedicada ao Moçambola e suporte 24/7",
+        "Melhor programa de Jogo Responsável (Jogue Bem)"
+      ],
+      "contras": [
+        "Não aceita Tmcel M-Kesh",
+        "Bónus de boas-vindas exige depósito mínimo de 20 MT"
+      ]
+    },
+    {
+      "id": "betway",
+      "nome": "Betway MZ",
+      "logo": "/img/logos/betway-logo.webp",
+      "review_url": "/casas/betway",
+      "link_slug": "betway",
+      "status": "ativo",
+      "destaque_home": false,
+      "operadora": "Jogos Sociais e Entretenimento, SA (JSE)",
+      "licenca": "Ref. 371/IGJ/2019",
+      "nota_final": 4.6,
+      "bonus_titulo": "100% até 5.000 MT (Rollover 3x a 2.00+)",
+      "deposito_min": "1 MT",
+      "levantamento_min": "1 MT (até 150.000 MT/dia)",
+      "pagamentos": "M-Pesa, e-Mola, M-Kesh, Banco",
+      "app_mobile": "Sim: Android, iOS e Huawei",
+      "termos_resumo": "+18. 1º dep. mín. 1 MT em 7 dias. Rollover 3x em odds 2.00+ em 30 dias.",
+      "pros": [
+        "Única casa licenciada com App nativa (Android, iOS e Huawei)",
+        "Rollover mais fácil do mercado (3x em odds 2.00+ com 30 dias)",
+        "Depósitos e levantamentos móveis a partir de 1 MT"
+      ],
+      "contras": [
+        "Aposta Grátis não pode ser dividida em vários bilhetes",
+        "Transferências bancárias levam 1 a 2 dias úteis"
+      ]
+    },
+    {
+      "id": "elephant-bet",
+      "nome": "Elephant Bet",
+      "logo": "/img/logos/elephantbet-logo.webp",
+      "review_url": "/casas/elephant-bet",
+      "link_slug": "elephant-bet",
+      "status": "ativo",
+      "destaque_home": false,
+      "operadora": "General Betting LDA",
+      "licenca": "N°093/IGJ/JDS/2022",
+      "nota_final": 4.5,
+      "bonus_titulo": "200% até 5.000 MZN (1º dep.) + Voucher",
+      "deposito_min": "1 MZN (100 MZN p/ Bónus)",
+      "levantamento_min": "M-Pesa, e-Mola, Voucher",
+      "pagamentos": "M-Pesa, e-Mola, Voucher, Banco",
+      "app_mobile": "Navegador Mobile (0 MB)",
+      "termos_resumo": "+18. Clicar em ACTIVAR no depósito (mín. 100 MZN). Rollover 5x em 7 dias.",
+      "pros": [
+        "Rede de agentes físicos com depósitos e levantamentos por Voucher",
+        "Conversão de bónus de boas-vindas até 5x o valor atribuído",
+        "Apoio telefónico direto local (+258 84 094 4100)"
+      ],
+      "contras": [
+        "É obrigatório clicar manualmente em ACTIVAR para receber o bónus",
+        "Transferência bancária exige mínimo de 2.000 MZN"
+      ]
+    }
+  ]
+}

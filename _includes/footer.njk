@@ -1,0 +1,60 @@
+  <!-- RODAPÉ INSTITUCIONAL -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Sobre o {{ site.nome }}</h4>
+          <p style="color:#94a3b8; margin-bottom:0.85rem;">
+            O MocaPlay.site é um portal informativo e comparador independente de casas de apostas desportivas em Moçambique. Não operamos jogos de fortuna ou azar nem aceitamos apostas diretamente.
+          </p>
+          <span class="badge-18">+18 APENAS MAIORES DE IDADE</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Casas Analisadas</h4>
+          <ul class="footer-links">
+            {% for casa in casas.lista %}
+            <li><a href="{{ casa.review_url }}">{{ casa.nome }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Guias &amp; Pagamentos</h4>
+          <ul class="footer-links">
+            <li><a href="/melhores-casas-de-apostas-mocambique">Ranking Melhores Casas</a></li>
+            <li><a href="/codigos-promocionais-e-bonus">Bónus e Códigos Promocionais</a></li>
+            <li><a href="/pagamentos/m-pesa">Depósitos com M-Pesa</a></li>
+            <li><a href="/pagamentos/e-mola">Depósitos com e-Mola</a></li>
+            <li><a href="/pagamentos/mkesh">Depósitos com M-Kesh</a></li>
+            <li><a href="/guias/aviator-e-jogos-crash">Guia Aviator e Crash</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Transparência &amp; Legal</h4>
+          <ul class="footer-links">
+            <li><a href="/como-avaliamos">Como Avaliamos</a></li>
+            <li><a href="/sobre">Sobre Nós</a></li>
+            <li><a href="/equipa-e-autores">Equipa e Autores</a></li>
+            <li><a href="/jogo-responsavel">Jogo Responsável (+18)</a></li>
+            <li><a href="/aviso-de-afiliados">Aviso de Afiliados</a></li>
+            <li><a href="/politica-de-privacidade">Política de Privacidade</a></li>
+            <li><a href="/termos-de-uso">Termos de Uso</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal-notice">
+        {{ site.aviso_rodape }} Consulte a nossa página de <a href="/jogo-responsavel" style="color:#fff; text-decoration:underline;">Jogo Responsável</a> e a nossa <a href="/como-avaliamos" style="color:#fff; text-decoration:underline;">Metodologia de Avaliação</a>.
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 {{ site.nome }} (mocaplay.site). Todos os direitos reservados.</span>
+        <span>Desenvolvido para apostadores em Moçambique (pt-MZ).</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>

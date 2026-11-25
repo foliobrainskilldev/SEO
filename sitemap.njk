@@ -1,0 +1,61 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 1. Páginas Principais e Ranking -->
+  <url><loc>https://mocaplay.site/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://mocaplay.site/melhores-casas-de-apostas-mocambique</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://mocaplay.site/como-avaliamos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- 2. Análises das 5 Casas Licenciadas (IGJ) -->
+  <url><loc>https://mocaplay.site/casas/placard</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mocaplay.site/casas/elephant-bet</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mocaplay.site/casas/888bets</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mocaplay.site/casas/betway</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mocaplay.site/casas/olabet</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- 3. Bónus, Pagamentos Móveis e Apps -->
+  <url><loc>https://mocaplay.site/codigos-promocionais-e-bonus</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/pagamentos/m-pesa</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/pagamentos/e-mola</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/pagamentos/mkesh</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/apps-de-apostas-mocambique</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- 4. Guias Educativos e Aviator/Crash -->
+  <url><loc>https://mocaplay.site/guias/como-apostar-iniciantes</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/guias/o-que-sao-odds</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/guias/tipos-de-apostas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/guias/gestao-de-banca</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/guias/aviator-e-jogos-crash</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
+  <!-- 5. Apostas de Futebol, Moçambola e Ligas -->
+  <url><loc>https://mocaplay.site/apostas-futebol/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/apostas-futebol/mocambola</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/apostas-futebol/premier-league</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/apostas-futebol/la-liga</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/apostas-futebol/champions-league</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mocaplay.site/apostas-futebol/mundial</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- 6. Central do Blog e Páginas Institucionais -->
+  <url><loc>https://mocaplay.site/blog/</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
+  <url><loc>https://mocaplay.site/sobre</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mocaplay.site/equipa-e-autores</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mocaplay.site/contacto</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mocaplay.site/jogo-responsavel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mocaplay.site/aviso-de-afiliados</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://mocaplay.site/politica-de-privacidade</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://mocaplay.site/termos-de-uso</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+
+  <!-- 7. PÁGINAS E ARTIGOS CRIADOS PELO CMS (Sem .html) -->
+  {% for pagina in collections.paginas_cms %}
+  {% if pagina.url %}
+  <url>
+    <loc>https://mocaplay.site{{ pagina.url | replace('.html', '') }}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  {% endif %}
+  {% endfor %}
+</urlset>

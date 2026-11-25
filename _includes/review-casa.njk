@@ -1,0 +1,238 @@
+{% set casaAtual = null %}
+{% for item in casas.lista %}
+  {% if item.id == casa_id %}
+    {% set casaAtual = item %}
+  {% endif %}
+{% endfor %}
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  {% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+  <link rel="canonical" href="{{ site.dominio }}{{ page.url | replace('.html', '') }}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ site.dominio }}{{ page.url | replace('.html', '') }}">
+  <meta property="og:site_name" content="{{ site.nome }}">
+  <meta property="og:locale" content="pt_MZ">
+  <meta property="og:image" content="{{ site.dominio }}{{ cover_image | default(site.capa_padrao) }}">
+
+  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png?v=2" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png?v=2" sizes="192x192">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site.dominio }}/#organization",
+        "name": "{{ site.nome }}",
+        "url": "{{ site.dominio }}/",
+        "logo": "{{ site.dominio }}{{ site.logo_header }}"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "{{ site.dominio }}{{ page.url | replace('.html', '') }}#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "{{ site.dominio }}/" },
+          { "@type": "ListItem", "position": 2, "name": "Melhores Casas", "item": "{{ site.dominio }}/melhores-casas-de-apostas-mocambique" },
+          { "@type": "ListItem", "position": 3, "name": "{{ casaAtual.nome | default(h1) }}", "item": "{{ site.dominio }}{{ page.url | replace('.html', '') }}" }
+        ]
+      }
+      {% if casaAtual %},
+      {
+        "@type": "Review",
+        "@id": "{{ site.dominio }}{{ page.url | replace('.html', '') }}#review",
+        "itemReviewed": {
+          "@type": "Organization",
+          "name": "{{ casaAtual.nome }}"
+        },
+        "author": { "@type": "Person", "name": "{{ site.autor_nome }}" },
+        "publisher": { "@id": "{{ site.dominio }}/#organization" },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "{{ casaAtual.nota_final }}",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "reviewBody": "{{ description | replace('"', '\\"') }}"
+      }
+      {% endif %}
+      {% if faqs and faqs.length > 0 %},
+      {
+        "@type": "FAQPage",
+        "@id": "{{ site.dominio }}{{ page.url | replace('.html', '') }}#faq",
+        "mainEntity": [
+          {% for item in faqs %}
+          {
+            "@type": "Question",
+            "name": "{{ item.pergunta | replace('"', '\\"') }}",
+            "acceptedAnswer": { "@type": "Answer", "text": "{{ item.resposta | replace('"', '\\"') }}" }
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+      {% endif %}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  {% set active_nav = "casas" %}
+  {% include "header.njk" %}
+
+  <main class="container">
+    <ol class="breadcrumbs" aria-label="caminho de navegação">
+      <li><a href="/">Início</a></li>
+      <li><a href="/melhores-casas-de-apostas-mocambique">Melhores Casas</a></li>
+      <li aria-current="page">{{ casaAtual.nome | default(breadcrumb) }}</li>
+    </ol>
+
+    <div class="article-meta-bar">
+      <span class="author-badge">
+        Escrito por {{ site.autor_nome }}
+        <svg class="verified-icon" viewBox="0 0 24 24" aria-label="Autor Verificado" role="img">
+          <path d="M12 2L14.8 4.5L18.5 4.1L19.8 7.6L23 9.5L21.8 13L23 16.5L19.8 18.4L18.5 21.9L14.8 21.5L12 24L9.2 21.5L5.5 21.9L4.2 18.4L1 16.5L2.2 13L1 9.5L4.2 7.6L5.5 4.1L9.2 4.5L12 2ZM10.4 16.6L17.2 9.8L15.8 8.4L10.4 13.8L8.2 11.6L6.8 13L10.4 16.6Z"/>
+        </svg>
+      </span>
+      <span>Atualizado em: <span class="dynamic-date">25 de Novembro de 2026</span></span>
+      {% if casaAtual %}<span>Classificação MocaPlay: <strong>{{ casaAtual.nota_final }} / 5 Estrelas</strong></span>{% endif %}
+    </div>
+
+    <!-- HERO DA REVIEW + FICHA TÉCNICA AUTOMÁTICA -->
+    <section class="hero-editorial-grid" aria-label="Cabeçalho da Análise">
+      <div class="hero-main-card has-cover" style="background-image: url('{{ cover_image | default(site.capa_padrao) }}');">
+        {% if casaAtual %}
+        <div style="display:flex; align-items:center; gap:0.85rem; margin-bottom:0.85rem;">
+          <img src="{{ casaAtual.logo }}" alt="Logo {{ casaAtual.nome }}" class="brand-logo-slot" width="68" height="34">
+          <span class="category-badge green" style="margin:0;">Licença IGJ Verificada</span>
+        </div>
+        {% endif %}
+        <h1>{{ h1 }}</h1>
+        <p>{{ subtitle }}</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+          {% if casaAtual %}
+          <a href="/ir/{{ casaAtual.link_slug }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta">
+            Visitar {{ casaAtual.nome }} &rarr;
+          </a>
+          {% endif %}
+          <a href="#pros-contras" class="btn btn-primary">Ver Prós e Contras &darr;</a>
+        </div>
+      </div>
+
+      {% if casaAtual %}
+      <aside class="top-panel-dark" aria-label="Ficha Técnica Oficial">
+        <div class="top-panel-header">
+          <h2>Ficha Técnica Oficial</h2>
+          <span class="rating-pill">&#9733; {{ casaAtual.nota_final }}/5</span>
+        </div>
+        <ul class="top-panel-list">
+          <li class="top-panel-item">
+            <div class="top-panel-info">
+              <strong>Entidade &amp; Licença IGJ</strong>
+              <span>{{ casaAtual.operadora }} — {{ casaAtual.licenca }}</span>
+            </div>
+            <span class="top-panel-score" style="color:#10b981;">Legal</span>
+          </li>
+          <li class="top-panel-item">
+            <div class="top-panel-info">
+              <strong>Depósito Mínimo</strong>
+              <span>{{ casaAtual.pagamentos }}</span>
+            </div>
+            <span class="top-panel-score">{{ casaAtual.deposito_min }}</span>
+          </li>
+          <li class="top-panel-item">
+            <div class="top-panel-info">
+              <strong>Levantamento Mínimo</strong>
+              <span>Processamento rápido</span>
+            </div>
+            <span class="top-panel-score">{{ casaAtual.levantamento_min }}</span>
+          </li>
+          <li class="top-panel-item">
+            <div class="top-panel-info">
+              <strong>App Mobile</strong>
+              <span>Acesso no telemóvel</span>
+            </div>
+            <span class="top-panel-score">{{ casaAtual.app_mobile }}</span>
+          </li>
+          <li class="top-panel-item">
+            <div class="top-panel-info">
+              <strong>Bónus Principal</strong>
+              <span>{{ casaAtual.bonus_titulo }}</span>
+            </div>
+          </li>
+        </ul>
+      </aside>
+      {% endif %}
+    </section>
+
+    <!-- CORPO DA REVIEW -->
+    <article class="content-prose cms-body-wrap">
+      {{ content | safe }}
+    </article>
+
+    <!-- PRÓS E CONTRAS AUTOMÁTICOS DA BASE DE DADOS -->
+    {% if casaAtual %}
+    <section id="pros-contras" aria-labelledby="titulo-pros-contras">
+      <div class="section-header">
+        <h2 class="section-title red-accent" id="titulo-pros-contras">Prós, Contras e Veredito: {{ casaAtual.nome }}</h2>
+      </div>
+      <div class="pros-cons-grid">
+        <div class="pros-box">
+          <h4>&#10003; O Que Mais Gostamos (Prós)</h4>
+          <ul>
+            {% for pro in casaAtual.pros %}<li>{{ pro }}</li>{% endfor %}
+          </ul>
+        </div>
+        <div class="cons-box">
+          <h4>&#10007; Pontos a Melhorar (Contras)</h4>
+          <ul>
+            {% for contra in casaAtual.contras %}<li>{{ contra }}</li>{% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="review-box" style="margin-top:1.25rem; background-color:#f8fafc;">
+        <h3 style="margin-bottom:0.5rem;">Veredito MocaPlay ({{ casaAtual.nota_final }}/5)</h3>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">{{ veredito | default(casaAtual.termos_resumo) }}</p>
+        <a href="/ir/{{ casaAtual.link_slug }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta">
+          Criar Conta na {{ casaAtual.nome }} &rarr;
+        </a>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- FAQ AUTOMÁTICO -->
+    {% if faqs and faqs.length > 0 %}
+    <section aria-labelledby="titulo-faq-casa">
+      <div class="section-header">
+        <h2 class="section-title" id="titulo-faq-casa">Perguntas Frequentes</h2>
+      </div>
+      <div class="faq-list">
+        {% for item in faqs %}
+        <div class="faq-item {% if loop.first %}active{% endif %}">
+          <button class="faq-question" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}">
+            <span>{{ item.pergunta }}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><p>{{ item.resposta }}</p></div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </main>
+
+  {% include "footer.njk" %}
+</body>
+</html>

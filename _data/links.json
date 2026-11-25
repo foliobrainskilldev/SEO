@@ -1,0 +1,40 @@
+{
+  "afiliados": [
+    {
+      "slug": "placard",
+      "nome": "Placard Moçambique",
+      "url_principal": "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690",
+      "url_fallback": "https://go.aff.olabetpartners.com/ytc51dfg",
+      "usar_fallback": false
+    },
+    {
+      "slug": "olabet",
+      "nome": "Olabet Moçambique",
+      "url_principal": "https://go.aff.olabetpartners.com/ytc51dfg",
+      "url_fallback": "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690",
+      "usar_fallback": false
+    },
+    {
+      "slug": "888bets",
+      "nome": "888bets Moçambique",
+      "url_principal": "https://tracking.888africa.com/visit/?bta=3785&brand=888mozambique",
+      "url_fallback": "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690",
+      "usar_fallback": false
+    },
+    {
+      "slug": "betway",
+      "nome": "Betway Moçambique",
+      "url_principal": "https://www.betway.co.mz/?btag=P120277-PR38246-CM114685-TS2180505",
+      "url_fallback": "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690",
+      "usar_fallback": false
+    },
+    {
+      "slug": "elephant-bet",
+      "nome": "Elephant Bet Moçambique",
+      "url_principal": "https://www.elephantbet.co.mz",
+      "url_fallback": "https://media1.placard.co.mz/redirect.aspx?pid=6189&bid=1690",
+      "usar_fallback": false
+    }
+  ],
+  "redirecionamentos_301": []
+}

@@ -1,0 +1,57 @@
+  <!-- 1. TOPBAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="current-date">Qua, 25 Nov 2026</span>
+        <span class="topbar-trending">
+          <strong>Em Destaque:</strong> {{ topbar_text | default(site.topbar_destaque) }}
+        </span>
+      </div>
+      <div class="topbar-right">
+        <span class="badge-18">+18</span>
+        <span>Jogue com moderação</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER BRANCO ESTILO USA TODAY -->
+  <header class="site-header">
+    <div class="container header-grid">
+      <a href="/" class="brand-logo" aria-label="{{ site.nome }} - Página Inicial">
+        <img src="{{ site.logo_header }}" alt="{{ site.nome }}" class="brand-logo-full" width="180" height="44">
+      </a>
+
+      <div class="header-banner">
+        <div class="header-banner-text">
+          <strong>Destaque #1 MZ:</strong> Placard.co.mz com depósitos desde 1 MT e Boost até 1000%.
+        </div>
+        <a href="{{ site.cta_header_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-cta btn-sm">
+          Visitar Placard &rarr;
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. MENU DE NAVEGAÇÃO -->
+  <nav class="navbar" aria-label="Navegação Principal">
+    <div class="container navbar-inner">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+        &#9776; Menu
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/" {% if active_nav == "home" %}class="active"{% endif %}>Início</a></li>
+        <li><a href="/melhores-casas-de-apostas-mocambique" {% if active_nav == "casas" %}class="active"{% endif %}>Melhores Casas</a></li>
+        <li><a href="/codigos-promocionais-e-bonus" {% if active_nav == "bonus" %}class="active"{% endif %}>Bónus &amp; Códigos</a></li>
+        <li><a href="/pagamentos/m-pesa" {% if active_nav == "pagamentos" %}class="active"{% endif %}>M-Pesa &amp; Pagamentos</a></li>
+        <li><a href="/apps-de-apostas-mocambique" {% if active_nav == "apps" %}class="active"{% endif %}>Apps Mobile</a></li>
+        <li><a href="/guias/como-apostar-iniciantes" {% if active_nav == "guias" %}class="active"{% endif %}>Guias</a></li>
+        <li><a href="/apostas-futebol/" {% if active_nav == "futebol" %}class="active"{% endif %}>Futebol &amp; Moçambola</a></li>
+      </ul>
+
+      <a href="{{ site.cta_header_url }}" target="_blank" rel="sponsored nofollow noopener" class="nav-cta-btn">
+        &#9654; {{ site.cta_header_texto }}
+      </a>
+    </div>
+  </nav>
