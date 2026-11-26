@@ -5,7 +5,7 @@ draft: false
 featured: false
 featured_order: 1
 noindex: false
-permalink: /blog/artigos/como-jogar-aviator-888bets-mocambique
+permalink: /blog/artigos/como-jogar-aviator-888bets-mocambique.html
 seccao_nome: Artigos & Guias
 cover_image: /img/uploads/67988.webp
 cover_alt: ''
