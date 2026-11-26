@@ -1,18 +1,107 @@
 {
   "nome": "MocaPlay",
   "dominio": "https://mocaplay.site",
-  "logo_header": "/img/logo-mocaplay.png",
-  "capa_padrao": "/img/og-mocaplay.webp",
-  "tagline": "Comparador Independente de Apostas em Moçambique",
+  "logo_header": "/img/uploads/66812.webp",
+  "capa_padrao": "/img/uploads/65558.webp",
   "topbar_destaque": "Licenças IGJ 2026, Depósitos desde 1 MT via M-Pesa/e-Mola e Guia do Moçambola",
   "cta_header_texto": "Casa #1 MZ",
   "cta_header_url": "/ir/placard",
+  "featured_home_badge": "Ranking Oficial 2026",
   "featured_home_titulo": "Melhores Casas de Apostas em Moçambique 2026: Comparação Transparente",
   "featured_home_resumo": "Analisámos as 5 operadoras licenciadas pela IGJ: depósitos desde 1 MT via M-Pesa, e-Mola e M-Kesh, regras reais de rollover e levantamentos.",
   "featured_home_url": "/melhores-casas-de-apostas-mocambique",
-  "featured_home_imagem": "/img/og-mocaplay.webp",
-  "featured_home_badge": "Ranking Oficial 2026",
+  "featured_home_imagem": "/img/uploads/67184.webp",
+  "quick_strip": [
+    {
+      "titulo": "Depósitos desde 1 MT via M-Pesa e e-Mola",
+      "categoria": "Pagamentos Móveis MZ",
+      "url": "/pagamentos/m-pesa",
+      "imagem": "/img/uploads/67190.webp",
+      "alt": "Depósitos M-Pesa"
+    },
+    {
+      "titulo": "Aviator & Crash Games: RNG e Chuva Grátis",
+      "categoria": "Jogos Rápidos",
+      "url": "/guias/aviator-e-jogos-crash",
+      "imagem": "/img/uploads/67249.webp",
+      "alt": "Guia Aviator Moçambique"
+    },
+    {
+      "titulo": "Guia do Moçambola: Mercados e Fator Casa",
+      "categoria": "Futebol Nacional",
+      "url": "/apostas-futebol/mocambola",
+      "imagem": "/img/uploads/67250.webp",
+      "alt": "Apostas no Moçambola"
+    },
+    {
+      "titulo": "Apps Mobile: Betway App vs. Navegador Leve",
+      "categoria": "Android, iOS & Huawei",
+      "url": "/apps-de-apostas-mocambique",
+      "imagem": "/img/uploads/67251.webp",
+      "alt": "Apps de Apostas MZ"
+    }
+  ],
+  "destaques_fixos": [
+    {
+      "badge_text": "Bónus & Regras",
+      "badge_color": "red",
+      "titulo": "Códigos Promocionais e Regras Reais de Rollover",
+      "resumo": "Entenda a diferença entre saldo real e bónus, prazos de validade e tetos de conversão em Meticais.",
+      "url": "/codigos-promocionais-e-bonus",
+      "texto_botao": "Ver Bónus",
+      "imagem": "/img/uploads/67283.webp",
+      "alt": "Bónus e Códigos Promocionais"
+    },
+    {
+      "badge_text": "Pagamentos Móveis",
+      "badge_color": "green",
+      "titulo": "Como Depositar e Levantar com M-Pesa, e-Mola e M-Kesh",
+      "resumo": "Passo a passo para carregar desde 1 MT e aprovar transações M-Kesh no menu *500#.",
+      "url": "/pagamentos/m-pesa",
+      "texto_botao": "Ver Pagamentos",
+      "imagem": "/img/uploads/67190.webp",
+      "alt": "Pagamentos M-Pesa e-Mola M-Kesh"
+    }
+  ],
+  "guias_mais_lidos": [
+    {
+      "titulo": "Como Começar a Apostar Online em Moçambique",
+      "subtitulo": "Iniciantes • Desde 1 MT",
+      "url": "/guias/como-apostar-iniciantes",
+      "imagem": "/img/uploads/67375.webp",
+      "alt": "Guia Iniciantes"
+    },
+    {
+      "titulo": "Aviator e Jogos Crash: RNG, Auto Cash Out e Riscos",
+      "subtitulo": "Jogos Rápidos",
+      "url": "/guias/aviator-e-jogos-crash",
+      "imagem": "/img/uploads/67249.webp",
+      "alt": "Aviator"
+    },
+    {
+      "titulo": "Handicap Asiático vs. Europeu, Golos e Cartões",
+      "subtitulo": "Mercados Desportivos",
+      "url": "/guias/tipos-de-apostas",
+      "imagem": "/img/uploads/67385.webp",
+      "alt": "Handicap"
+    },
+    {
+      "titulo": "O Que São Odds e Como Calcular o Seu Lucro em MT",
+      "subtitulo": "Cotações & Matemática",
+      "url": "/guias/o-que-sao-odds",
+      "imagem": "/img/uploads/67386.webp",
+      "alt": "Odds"
+    },
+    {
+      "titulo": "Gestão de Banca: Como Proteger o Seu Saldo",
+      "subtitulo": "Controlo & Jogo Responsável",
+      "url": "/guias/gestao-de-banca",
+      "imagem": "/img/uploads/67387.webp",
+      "alt": "Banca"
+    }
+  ],
   "autor_nome": "Mocaplay",
   "autor_cargo": "Equipa Editorial & Analista de Apostas MZ",
-  "aviso_rodape": "+18 | Jogue com responsabilidade. As apostas desportivas e jogos de casino podem causar dependência se não forem praticados com moderação. Aposte apenas o que pode perder. Este site contém links de afiliado: podemos receber uma comissão caso se registe através dos nossos links, sem qualquer custo adicional para si."
+  "aviso_rodape": "+18 | Jogue com responsabilidade. As apostas desportivas e jogos de casino podem causar dependência se não forem praticados com moderação. Aposte apenas o que pode perder. Este site contém links de afiliado: podemos receber uma comissão caso se registe através dos nossos links, sem qualquer custo adicional para si.",
+  "tagline": "Comparador Independente de Apostas em Moçambique"
 }

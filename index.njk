@@ -77,7 +77,7 @@ eleventyExcludeFromCollections: true
   <header class="site-header">
     <div class="container header-grid">
       <a href="/" class="brand-logo" aria-label="{{ site.nome }} - Página Inicial">
-        <img src="{{ site.logo_header }}" alt="{{ site.nome }}" class="brand-logo-full" width="180" height="44">
+        <img src="{{ site.logo_header | default('/img/logo-mocaplay.png') }}" alt="{{ site.nome }}" class="brand-logo-full" width="180" height="44">
       </a>
 
       <div class="header-banner">
@@ -114,46 +114,12 @@ eleventyExcludeFromCollections: true
     </div>
   </nav>
 
-  <!-- 4. FAIXA DE DESTAQUES RÁPIDOS COM MINIATURAS (ESTILO USA TODAY) -->
-  <div class="quick-strip">
-    <div class="container quick-strip-grid">
-      <a href="/pagamentos/m-pesa" class="quick-strip-card">
-        <img src="{{ site.capa_padrao }}" alt="Depósitos M-Pesa" class="quick-strip-thumb" width="68" height="52">
-        <div class="quick-strip-meta">
-          <strong>Depósitos desde 1 MT via M-Pesa e e-Mola</strong>
-          <span>Pagamentos Móveis MZ</span>
-        </div>
-      </a>
-      <a href="/guias/aviator-e-jogos-crash" class="quick-strip-card">
-        <img src="{{ site.capa_padrao }}" alt="Guia Aviator Moçambique" class="quick-strip-thumb" width="68" height="52">
-        <div class="quick-strip-meta">
-          <strong>Aviator &amp; Crash Games: RNG e Chuva Grátis</strong>
-          <span>Jogos Rápidos</span>
-        </div>
-      </a>
-      <a href="/apostas-futebol/mocambola" class="quick-strip-card">
-        <img src="{{ site.capa_padrao }}" alt="Apostas no Moçambola" class="quick-strip-thumb" width="68" height="52">
-        <div class="quick-strip-meta">
-          <strong>Guia do Moçambola: Mercados e Fator Casa</strong>
-          <span>Futebol Nacional</span>
-        </div>
-      </a>
-      <a href="/apps-de-apostas-mocambique" class="quick-strip-card">
-        <img src="{{ site.capa_padrao }}" alt="Apps de Apostas MZ" class="quick-strip-thumb" width="68" height="52">
-        <div class="quick-strip-meta">
-          <strong>Apps Mobile: Betway App vs. Navegador Leve</strong>
-          <span>Android, iOS &amp; Huawei</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="container">
 
-    <!-- 5. HERO EDITORIAL COM IMAGEM DE CAPA + TOP 5 DINÂMICO -->
+    <!-- 4. HERO EDITORIAL LOGO ABAIXO DA NAVBAR + TOP 5 DINÂMICO -->
     <section class="hero-editorial-grid" aria-label="Destaque Principal">
-      <div class="hero-main-card has-cover" style="background-image: url('{{ site.featured_home_imagem | default(site.capa_padrao) }}');">
+      <div class="hero-main-card has-cover" style="background-image: url('{{ site.featured_home_imagem | default('/img/capa-hero-mocaplay.webp') }}');">
         <span class="category-badge red">{{ site.featured_home_badge }}</span>
         <h1>{{ site.featured_home_titulo }}</h1>
         <p>{{ site.featured_home_resumo }}</p>
@@ -186,6 +152,40 @@ eleventyExcludeFromCollections: true
         </ul>
       </aside>
     </section>
+
+    <!-- 5. FAIXA DE DESTAQUES RÁPIDOS (IMAGENS FIXAS NO CÓDIGO + SUPORTE CMS) -->
+    <div class="quick-strip" style="margin: 0 0 1.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.75rem;">
+      <div class="quick-strip-grid">
+        <a href="{{ site.quick_strip[0].url | default('/pagamentos/m-pesa') }}" class="quick-strip-card">
+          <img src="{{ site.quick_strip[0].imagem | default('/img/guia-mpesa.webp') }}" alt="{{ site.quick_strip[0].alt | default('Depósitos M-Pesa') }}" class="quick-strip-thumb" width="68" height="52">
+          <div class="quick-strip-meta">
+            <strong>{{ site.quick_strip[0].titulo | default('Depósitos desde 1 MT via M-Pesa e e-Mola') }}</strong>
+            <span>{{ site.quick_strip[0].categoria | default('Pagamentos Móveis MZ') }}</span>
+          </div>
+        </a>
+        <a href="{{ site.quick_strip[1].url | default('/guias/aviator-e-jogos-crash') }}" class="quick-strip-card">
+          <img src="{{ site.quick_strip[1].imagem | default('/img/guia-aviator.webp') }}" alt="{{ site.quick_strip[1].alt | default('Guia Aviator Moçambique') }}" class="quick-strip-thumb" width="68" height="52">
+          <div class="quick-strip-meta">
+            <strong>{{ site.quick_strip[1].titulo | default('Aviator & Crash Games: RNG e Chuva Grátis') }}</strong>
+            <span>{{ site.quick_strip[1].categoria | default('Jogos Rápidos') }}</span>
+          </div>
+        </a>
+        <a href="{{ site.quick_strip[2].url | default('/apostas-futebol/mocambola') }}" class="quick-strip-card">
+          <img src="{{ site.quick_strip[2].imagem | default('/img/guia-mocambola.webp') }}" alt="{{ site.quick_strip[2].alt | default('Apostas no Moçambola') }}" class="quick-strip-thumb" width="68" height="52">
+          <div class="quick-strip-meta">
+            <strong>{{ site.quick_strip[2].titulo | default('Guia do Moçambola: Mercados e Fator Casa') }}</strong>
+            <span>{{ site.quick_strip[2].categoria | default('Futebol Nacional') }}</span>
+          </div>
+        </a>
+        <a href="{{ site.quick_strip[3].url | default('/apps-de-apostas-mocambique') }}" class="quick-strip-card">
+          <img src="{{ site.quick_strip[3].imagem | default('/img/guia-apps.webp') }}" alt="{{ site.quick_strip[3].alt | default('Apps de Apostas MZ') }}" class="quick-strip-thumb" width="68" height="52">
+          <div class="quick-strip-meta">
+            <strong>{{ site.quick_strip[3].titulo | default('Apps Mobile: Betway App vs. Navegador Leve') }}</strong>
+            <span>{{ site.quick_strip[3].categoria | default('Android, iOS & Huawei') }}</span>
+          </div>
+        </a>
+      </div>
+    </div>
 
     <!-- 6. TABELA DE COMPARAÇÃO DINÂMICA (ALIMENTADA PELO SVELTIA CMS) -->
     <section id="tabela-comparativa" aria-labelledby="titulo-tabela">
@@ -245,7 +245,7 @@ eleventyExcludeFromCollections: true
       </div>
     </section>
 
-    <!-- 7. FEATURED POSTS + TOP STORIES (ESTILO USA TODAY / SPORTNOW) -->
+    <!-- 7. FEATURED POSTS + TOP STORIES (IMAGENS FIXAS NO CÓDIGO + SUPORTE CMS) -->
     <section aria-labelledby="titulo-destaques">
       <div class="section-header">
         <h2 class="section-title" id="titulo-destaques">Em Destaque &amp; Guias Essenciais</h2>
@@ -275,28 +275,29 @@ eleventyExcludeFromCollections: true
           {% else %}
             <article class="visual-card">
               <div class="visual-card-media">
-                <img src="{{ site.capa_padrao }}" alt="Bónus e Códigos Promocionais" loading="lazy">
-                <span class="category-badge red">Bónus &amp; Regras</span>
+                <img src="{{ site.destaques_fixos[0].imagem | default('/img/capa-bonus-rollover.webp') }}" alt="{{ site.destaques_fixos[0].alt | default('Bónus e Códigos Promocionais') }}" loading="lazy">
+                <span class="category-badge {{ site.destaques_fixos[0].badge_color | default('red') }}">{{ site.destaques_fixos[0].badge_text | default('Bónus & Regras') }}</span>
               </div>
               <div class="visual-card-body">
                 <div>
-                  <h3><a href="/codigos-promocionais-e-bonus">Códigos Promocionais e Regras Reais de Rollover</a></h3>
-                  <p>Entenda a diferença entre saldo real e bónus, prazos de validade e tetos de conversão em Meticais.</p>
+                  <h3><a href="{{ site.destaques_fixos[0].url | default('/codigos-promocionais-e-bonus') }}">{{ site.destaques_fixos[0].titulo | default('Códigos Promocionais e Regras Reais de Rollover') }}</a></h3>
+                  <p>{{ site.destaques_fixos[0].resumo | default('Entenda a diferença entre saldo real e bónus, prazos de validade e tetos de conversão em Meticais.') }}</p>
                 </div>
-                <a href="/codigos-promocionais-e-bonus" class="btn btn-outline btn-sm">Ver Bónus &rarr;</a>
+                <a href="{{ site.destaques_fixos[0].url | default('/codigos-promocionais-e-bonus') }}" class="btn btn-outline btn-sm">{{ site.destaques_fixos[0].texto_botao | default('Ver Bónus') }} &rarr;</a>
               </div>
             </article>
+
             <article class="visual-card">
               <div class="visual-card-media">
-                <img src="{{ site.capa_padrao }}" alt="Pagamentos M-Pesa e-Mola M-Kesh" loading="lazy">
-                <span class="category-badge green">Pagamentos Móveis</span>
+                <img src="{{ site.destaques_fixos[1].imagem | default('/img/capa-pagamentos.webp') }}" alt="{{ site.destaques_fixos[1].alt | default('Pagamentos M-Pesa e-Mola M-Kesh') }}" loading="lazy">
+                <span class="category-badge {{ site.destaques_fixos[1].badge_color | default('green') }}">{{ site.destaques_fixos[1].badge_text | default('Pagamentos Móveis') }}</span>
               </div>
               <div class="visual-card-body">
                 <div>
-                  <h3><a href="/pagamentos/m-pesa">Como Depositar e Levantar com M-Pesa, e-Mola e M-Kesh</a></h3>
-                  <p>Passo a passo para carregar desde 1 MT e aprovar transações M-Kesh no menu *500#.</p>
+                  <h3><a href="{{ site.destaques_fixos[1].url | default('/pagamentos/m-pesa') }}">{{ site.destaques_fixos[1].titulo | default('Como Depositar e Levantar com M-Pesa, e-Mola e M-Kesh') }}</a></h3>
+                  <p>{{ site.destaques_fixos[1].resumo | default('Passo a passo para carregar desde 1 MT e aprovar transações M-Kesh no menu *500#.') }}</p>
                 </div>
-                <a href="/pagamentos/m-pesa" class="btn btn-outline btn-sm">Ver Pagamentos &rarr;</a>
+                <a href="{{ site.destaques_fixos[1].url | default('/pagamentos/m-pesa') }}" class="btn btn-outline btn-sm">{{ site.destaques_fixos[1].texto_botao | default('Ver Pagamentos') }} &rarr;</a>
               </div>
             </article>
           {% endif %}
@@ -311,42 +312,42 @@ eleventyExcludeFromCollections: true
             <li class="top-story-item">
               <span class="top-story-num">1</span>
               <div class="top-story-info">
-                <a href="/guias/como-apostar-iniciantes">Como Começar a Apostar Online em Moçambique</a>
-                <span>Iniciantes &bull; Desde 1 MT</span>
+                <a href="{{ site.guias_mais_lidos[0].url | default('/guias/como-apostar-iniciantes') }}">{{ site.guias_mais_lidos[0].titulo | default('Como Começar a Apostar Online em Moçambique') }}</a>
+                <span>{{ site.guias_mais_lidos[0].subtitulo | default('Iniciantes • Desde 1 MT') }}</span>
               </div>
-              <img src="{{ site.capa_padrao }}" alt="Guia Iniciantes" class="top-story-thumb" width="58" height="48" loading="lazy">
+              <img src="{{ site.guias_mais_lidos[0].imagem | default('/img/guia-iniciantes.webp') }}" alt="{{ site.guias_mais_lidos[0].alt | default('Guia Iniciantes') }}" class="top-story-thumb" width="58" height="48" loading="lazy">
             </li>
             <li class="top-story-item">
               <span class="top-story-num">2</span>
               <div class="top-story-info">
-                <a href="/guias/aviator-e-jogos-crash">Aviator e Jogos Crash: RNG, Auto Cash Out e Riscos</a>
-                <span>Jogos Rápidos</span>
+                <a href="{{ site.guias_mais_lidos[1].url | default('/guias/aviator-e-jogos-crash') }}">{{ site.guias_mais_lidos[1].titulo | default('Aviator e Jogos Crash: RNG, Auto Cash Out e Riscos') }}</a>
+                <span>{{ site.guias_mais_lidos[1].subtitulo | default('Jogos Rápidos') }}</span>
               </div>
-              <img src="{{ site.capa_padrao }}" alt="Aviator" class="top-story-thumb" width="58" height="48" loading="lazy">
+              <img src="{{ site.guias_mais_lidos[1].imagem | default('/img/guia-aviator.webp') }}" alt="{{ site.guias_mais_lidos[1].alt | default('Aviator') }}" class="top-story-thumb" width="58" height="48" loading="lazy">
             </li>
             <li class="top-story-item">
               <span class="top-story-num">3</span>
               <div class="top-story-info">
-                <a href="/guias/tipos-de-apostas">Handicap Asiático vs. Europeu, Golos e Cartões</a>
-                <span>Mercados Desportivos</span>
+                <a href="{{ site.guias_mais_lidos[2].url | default('/guias/tipos-de-apostas') }}">{{ site.guias_mais_lidos[2].titulo | default('Handicap Asiático vs. Europeu, Golos e Cartões') }}</a>
+                <span>{{ site.guias_mais_lidos[2].subtitulo | default('Mercados Desportivos') }}</span>
               </div>
-              <img src="{{ site.capa_padrao }}" alt="Handicap" class="top-story-thumb" width="58" height="48" loading="lazy">
+              <img src="{{ site.guias_mais_lidos[2].imagem | default('/img/guia-handicap.webp') }}" alt="{{ site.guias_mais_lidos[2].alt | default('Handicap') }}" class="top-story-thumb" width="58" height="48" loading="lazy">
             </li>
             <li class="top-story-item">
               <span class="top-story-num">4</span>
               <div class="top-story-info">
-                <a href="/guias/o-que-sao-odds">O Que São Odds e Como Calcular o Seu Lucro em MT</a>
-                <span>Cotações &amp; Matemática</span>
+                <a href="{{ site.guias_mais_lidos[3].url | default('/guias/o-que-sao-odds') }}">{{ site.guias_mais_lidos[3].titulo | default('O Que São Odds e Como Calcular o Seu Lucro em MT') }}</a>
+                <span>{{ site.guias_mais_lidos[3].subtitulo | default('Cotações & Matemática') }}</span>
               </div>
-              <img src="{{ site.capa_padrao }}" alt="Odds" class="top-story-thumb" width="58" height="48" loading="lazy">
+              <img src="{{ site.guias_mais_lidos[3].imagem | default('/img/guia-odds.webp') }}" alt="{{ site.guias_mais_lidos[3].alt | default('Odds') }}" class="top-story-thumb" width="58" height="48" loading="lazy">
             </li>
             <li class="top-story-item">
               <span class="top-story-num">5</span>
               <div class="top-story-info">
-                <a href="/guias/gestao-de-banca">Gestão de Banca: Como Proteger o Seu Saldo</a>
-                <span>Controlo &amp; Jogo Responsável</span>
+                <a href="{{ site.guias_mais_lidos[4].url | default('/guias/gestao-de-banca') }}">{{ site.guias_mais_lidos[4].titulo | default('Gestão de Banca: Como Proteger o Seu Saldo') }}</a>
+                <span>{{ site.guias_mais_lidos[4].subtitulo | default('Controlo & Jogo Responsável') }}</span>
               </div>
-              <img src="{{ site.capa_padrao }}" alt="Banca" class="top-story-thumb" width="58" height="48" loading="lazy">
+              <img src="{{ site.guias_mais_lidos[4].imagem | default('/img/guia-banca.webp') }}" alt="{{ site.guias_mais_lidos[4].alt | default('Banca') }}" class="top-story-thumb" width="58" height="48" loading="lazy">
             </li>
           </ol>
         </aside>

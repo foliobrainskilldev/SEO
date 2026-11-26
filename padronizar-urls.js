@@ -4,14 +4,26 @@ const path = require('path');
 const IGNORE_DIRS = new Set(['node_modules', '_site', '.git', 'admin', 'img']);
 const TARGET_EXTS = new Set(['.html', '.njk']);
 
+let siteData = {
+  nome: 'MocaPlay',
+  logo_header: '/img/logo-mocaplay.png'
+};
+
+try {
+  const rawSite = fs.readFileSync(path.join('_data', 'site.json'), 'utf8');
+  siteData = { ...siteData, ...JSON.parse(rawSite) };
+} catch (e) {
+  console.warn('⚠️ Aviso: _data/site.json não encontrado, a usar valores padrão.');
+}
+
 const FAVICON_BLOCK = `<link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
   <link rel="icon" type="image/png" href="/favicon-32x32.png?v=2" sizes="32x32">
   <link rel="icon" type="image/png" href="/android-chrome-192x192.png?v=2" sizes="192x192">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180">
   <link rel="manifest" href="/site.webmanifest">`;
 
-const NEW_LOGO_HTML = `<a href="/" class="brand-logo" aria-label="MocaPlay - Página Inicial">
-          <img src="/img/logo-mocaplay.png" alt="MocaPlay" class="brand-logo-full" width="180" height="44">
+const NEW_LOGO_HTML = `<a href="/" class="brand-logo" aria-label="${siteData.nome} - Página Inicial">
+          <img src="${siteData.logo_header}" alt="${siteData.nome}" class="brand-logo-full" width="180" height="44">
         </a>`;
 
 function getFiles(dir) {
@@ -42,7 +54,7 @@ for (const file of files) {
   // 2. Todos os links internos href="/...html"
   content = content.replace(/href="(\/[^"#?]*?)\.html([#?][^"]*)?"/g, 'href="$1$2"');
 
-  // 3. URLs absolutas do domínio
+  // 3. URLs absolutas do domínio (Canonical, og:url e JSON-LD)
   content = content.replace(/(https:\/\/mocaplay\.site\/[^"#?\s<]*?)\.html/g, '$1');
 
   // 4. Templates Eleventy
@@ -63,10 +75,10 @@ for (const file of files) {
     FAVICON_BLOCK
   );
 
-  // 6. Substituição automática da letra "M" antiga pela Logo PNG em todas as páginas HTML fixas
+  // 6. Sincronização automática da Logo do CMS em todas as páginas HTML fixas
   if (file.endsWith('.html')) {
     content = content.replace(
-      /<a href="\/" class="brand-logo">[\s\S]*?<\/a>/,
+      /<a href="\/" class="brand-logo"[^>]*>[\s\S]*?<\/a>/,
       NEW_LOGO_HTML
     );
   }
@@ -77,4 +89,4 @@ for (const file of files) {
   }
 }
 
-console.log(`✅ Ficheiros atualizados: ${updatedCount}`);
+console.log(`✅ Ficheiros limpos (canonicais sem .html + logo atualizada): ${updatedCount}`);

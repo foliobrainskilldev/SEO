@@ -95,6 +95,46 @@ collections:
           - { label: "Hero Home: Resumo", name: "featured_home_resumo", widget: "text" }
           - { label: "Hero Home: Link de Destino", name: "featured_home_url", widget: "string" }
           - { label: "Hero Home: Imagem de Fundo", name: "featured_home_imagem", widget: "image" }
+          - label: "Faixa de Destaques Rápidos (4 Cartões do Topo)"
+            name: "quick_strip"
+            widget: "list"
+            summary: "{{fields.titulo}} ({{fields.categoria}})"
+            fields:
+              - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "Categoria / Subtítulo", name: "categoria", widget: "string" }
+              - { label: "Link de Destino", name: "url", widget: "string" }
+              - { label: "Imagem (Opcional - usa capa padrão se vazio)", name: "imagem", widget: "image", required: false }
+              - { label: "Texto Alternativo (Alt SEO)", name: "alt", widget: "string", required: false }
+          - label: "Em Destaque & Guias Essenciais (Cartões Fixos de Reserva)"
+            name: "destaques_fixos"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Etiqueta (Badge)", name: "badge_text", widget: "string" }
+              - label: "Cor da Etiqueta"
+                name: "badge_color"
+                widget: "select"
+                options:
+                  - { label: "Vermelho", value: "red" }
+                  - { label: "Verde", value: "green" }
+                  - { label: "Azul", value: "" }
+                default: "red"
+              - { label: "Título do Cartão", name: "titulo", widget: "string" }
+              - { label: "Resumo", name: "resumo", widget: "text" }
+              - { label: "Link de Destino", name: "url", widget: "string" }
+              - { label: "Texto do Botão", name: "texto_botao", widget: "string", default: "Ler Guia" }
+              - { label: "Imagem de Capa (Opcional - usa capa padrão se vazio)", name: "imagem", widget: "image", required: false }
+              - { label: "Texto Alternativo (Alt SEO)", name: "alt", widget: "string", required: false }
+          - label: "Guias Mais Lidos (Barra Lateral da Home)"
+            name: "guias_mais_lidos"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Título do Guia", name: "titulo", widget: "string" }
+              - { label: "Subtítulo / Categoria", name: "subtitulo", widget: "string" }
+              - { label: "Link de Destino", name: "url", widget: "string" }
+              - { label: "Imagem Miniatura (Opcional - usa capa padrão se vazio)", name: "imagem", widget: "image", required: false }
+              - { label: "Texto Alternativo (Alt SEO)", name: "alt", widget: "string", required: false }
           - { label: "Nome do Autor Verificado", name: "autor_nome", widget: "string" }
           - { label: "Cargo do Autor", name: "autor_cargo", widget: "string" }
           - { label: "Aviso Legal Global (+18 Rodapé)", name: "aviso_rodape", widget: "text" }
