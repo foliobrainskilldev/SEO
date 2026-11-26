@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyExcludeFromCollections: false
 draft: false
 featured: false
-featured_order: 1
+featured_order: 2
 noindex: false
 permalink: /blog/artigos/como-jogar-aviator-888bets-mocambique.html
 seccao_nome: Artigos & Guias
